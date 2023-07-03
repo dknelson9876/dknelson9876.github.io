@@ -1,9 +1,0 @@
-name: Pelican Build
-on: [push]
-jobs:
-  Pelican-Build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: GitHub Pages Pelican Build Action
-      uses: nelsonjchen/gh-pages-pelican-action@0.1.10
-

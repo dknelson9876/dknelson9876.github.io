@@ -38,4 +38,4 @@ jobs:
           git add docs/
           git commit --amend --no-edit
 
-          git push origin master:deploy --force
+          git push origin main:deploy --force

@@ -4,8 +4,9 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content="Pelican" />
-        <title>dknelsonWiki - verilog</title>
+        <title>Notes on a RISC-V ALU</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="I need to write an ALU for my senior projet. But first I need to figure out the requirements." />
 </head>
 
 <body id="index" class="home">
@@ -13,14 +14,19 @@
                 <h1><a href="/">dknelsonWiki</a></h1>
                 <nav><ul>
                     <li><a href="/category/misc.html">misc</a></li>
-                    <li><a href="/category/risc-v.html">risc-v</a></li>
+                    <li class="active"><a href="/category/risc-v.html">risc-v</a></li>
                     <li><a href="/category/verilog.html">verilog</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/notes-on-a-risc-v-alu.html" rel="bookmark"
+           title="Permalink to Notes on a RISC-V ALU">Notes on a RISC-V ALU</a></h1>
+    </header>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/notes-on-a-risc-v-alu.html">Notes on a RISC-V ALU</a></h1>
+    <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2023-07-03T00:00:00-06:00">
                 Published: Mon 03 July 2023
@@ -31,7 +37,7 @@
         </address>
 <p>In <a href="/category/risc-v.html">risc-v</a>.</p>
 <p>tags: <a href="/tag/verilog.html">verilog</a> <a href="/tag/risc-v.html">risc-v</a> </p>
-</footer><!-- /.post-info --><p>As part of my senior project to build a RISC-V processor, I've been assigned/chosen to design the ALU. That means I'm going to need to figure out what a RISC-V ALU needs. My main source here is the latest RISC-V Instruction Set Manual (Unprivileged ISA), <a href="https://riscv.org/wp-content/uploads/2019/12/riscv-spec-20191213.pdf">link</a>, as of writing that's version 20191213.</p>
+</footer><!-- /.post-info -->      <p>As part of my senior project to build a RISC-V processor, I've been assigned/chosen to design the ALU. That means I'm going to need to figure out what a RISC-V ALU needs. My main source here is the latest RISC-V Instruction Set Manual (Unprivileged ISA), <a href="https://riscv.org/wp-content/uploads/2019/12/riscv-spec-20191213.pdf">link</a>, as of writing that's version 20191213.</p>
 <hr>
 <p>The arithmetic related instructions that exist in RV32E (our chosen ISA subset) are:</p>
 <ul>
@@ -45,36 +51,11 @@
 <p>The exception there is <code>SLT</code> and <code>SLTU</code>, as verilog will happily take care of unsigned comparisons, but we have to get a little more manual to perform a signed comparison using the MSb and the difference between the two values.</p>
 <blockquote>
 <p>Note: <code>rs1</code> is the left operator for arithmetic, which I'm also calling <code>A</code></p>
-</blockquote>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</blockquote>
+    </div><!-- /.entry-content -->
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/notes-on-a-modelsim-guide.html" rel="bookmark"
-                           title="Permalink to Notes on a ModelSim Guide">Notes on a ModelSim Guide</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2023-07-02T00:00:00-06:00">
-                Published: Sun 02 July 2023
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/dknelson.html">dknelson</a>
-        </address>
-<p>In <a href="/category/verilog.html">verilog</a>.</p>
-<p>tags: <a href="/tag/verilog.html">verilog</a> <a href="/tag/modelsim.html">modelsim</a> </p>
-</footer><!-- /.post-info -->                <p>I'm trying to figure out how to use ModelSim as a standalone program for compiling and synthesizing verilog</p>
-                <a class="readmore" href="/notes-on-a-modelsim-guide.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-                </section><!-- /#content -->
+  </article>
+</section>
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>

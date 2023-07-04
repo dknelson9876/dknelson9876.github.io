@@ -13,13 +13,52 @@
                 <h1><a href="/">dknelsonWiki</a></h1>
                 <nav><ul>
                     <li><a href="/category/misc.html">misc</a></li>
+                    <li><a href="/category/risc-v.html">risc-v</a></li>
                     <li><a href="/category/verilog.html">verilog</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/a-new-wiki.html">A New Wiki</a></h1>
+                    <h1 class="entry-title"><a href="/notes-on-a-risc-v-alu.html">Notes on a RISC-V ALU</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2023-07-03T00:00:00-06:00">
+                Published: Mon 03 July 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dknelson.html">dknelson</a>
+        </address>
+<p>In <a href="/category/risc-v.html">risc-v</a>.</p>
+<p>tags: <a href="/tag/verilog.html">verilog</a> <a href="/tag/risc-v.html">risc-v</a> </p>
+</footer><!-- /.post-info --><p>As part of my senior project to build a RISC-V processor, I've been assigned/chosen to design the ALU. That means I'm going to need to figure out what a RISC-V ALU needs. My main source here is the latest RISC-V Instruction Set Manual (Unprivileged ISA), <a href="https://riscv.org/wp-content/uploads/2019/12/riscv-spec-20191213.pdf">link</a>, as of writing that's version 20191213.</p>
+<hr>
+<p>The arithmetic related instructions that exist in RV32E (our chosen ISA subset) are:</p>
+<ul>
+<li><code>ADD</code>[I]/<code>SUB</code></li>
+<li><code>SLL</code>[I]/<code>SRL</code>[I]/<code>SRA</code>[I]</li>
+<li><code>AND</code>[I]/<code>OR</code>[I]/<code>XOR</code>[I]</li>
+<li><code>LUI</code>/<code>AUIPC</code>, <code>JAL</code>/<code>JALR</code></li>
+<li><code>BEQ</code>/<code>BNE</code>/<code>BLT</code>[U]/<code>BGT</code>[U]</li>
+</ul>
+<p>As I'm focusing on the ALU, the immediate variants are irrelevant right now. The first three bullets are instructions that it is the sole responsibility of the ALU to perform some math, so those are relatively. I can create an internal <code>aluOp</code> based on the func codes in the instruction, and simply perform the operation.</p>
+<p>The exception there is <code>SLT</code> and <code>SLTU</code>, as verilog will happily take care of unsigned comparisons, but we have to get a little more manual to perform a signed comparison using the MSb and the difference between the two values.</p>
+<blockquote>
+<p>Note: <code>rs1</code> is the left operator for arithmetic, which I'm also calling <code>A</code></p>
+</blockquote>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/a-new-wiki.html" rel="bookmark"
+                           title="Permalink to A New Wiki">A New Wiki</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2023-07-02T00:00:00-06:00">
                 Published: Sun 02 July 2023
@@ -30,14 +69,10 @@
         </address>
 <p>In <a href="/category/misc.html">misc</a>.</p>
 <p>tags: <a href="/tag/pelican.html">pelican</a> </p>
-</footer><!-- /.post-info --><p>Welcome to dknelson.dev, a website that I'm going to be using to host all the miscellaneous notes that I take about what I'm working on currently. This probably won't be very useful to many people, but on the off chance that the things I cobble together from the various guides of the internet and my own hours of frustration could reduce the frustration of others.</p>
-<p>This site is being built using <a href="https://docs.getpelican.com/en/latest/index.html">Pelican</a>, which allows me to continue taking notes in Markdown. I have hopes to add, at minimum, a dark theme and a search box, but I never know how much time I'm going to have, or what I'll dedicate it to (considering it already took me a month after the idea to get around to putting this up). So, don't rely on anything here.</p>
-<p>On the off chance a stranger on the internet wandered their way here, thanks!</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>Welcome to my adventure into Pelican as a personal wiki</p>
+                <a class="readmore" href="/a-new-wiki.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>

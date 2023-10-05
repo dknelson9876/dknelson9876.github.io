@@ -45,7 +45,8 @@ I especially like the way that the metadata for the article (date, category, tag
         <hr>
     </div>
 ```
+</details>
 
 Some of the most notable differences in the organization of the site is the removal of the individual 'period-archive', 'tag', and 'category' pages in favor of only having the 'archive', 'tags', and 'categories' pages, which have anchors within the page for the individual years/tags/categories. With my eventual intention to have (at least) a search function for this site, this is far from over.
 
-</details>
+I've noticed that I miss the way the default theme shows the first bit of the most recent article, not just the summary, so I should do something about that.

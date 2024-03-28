@@ -1,6 +1,6 @@
 AUTHOR = 'dknelson'
 SITENAME = 'dknelsonWiki'
-SITEURL = 'dknelson.dev'
+SITEURL = ''
 
 PATH = 'content'
 

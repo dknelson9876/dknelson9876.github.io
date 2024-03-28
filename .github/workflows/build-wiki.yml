@@ -24,7 +24,7 @@ jobs:
             pelican-4.2.0-
       - name: Install Pelican
         run: |
-          pip install -r requirements.txt
+          pip install -r requirements.txt --settings pelicanconf.py
       - name: Run Pelican
         id: run-pelican
         run: |

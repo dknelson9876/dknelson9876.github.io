@@ -22,9 +22,14 @@ Summary: A Cheatsheet for using SQL
  
 ## Clauses
 
-- Where: for filtering
+- `WHERE`: for filtering
     - `SELECT name FROM users WHERE age > 18;`
     - Accepts `=`, `<=`, `>=`, `IS NULL`, `IS NOT NULL`
+- `AS`: for single time column renaming
+    - `SELECT employee_id AS id FROM employees;`
+    - Useful when calculating new values in a query
+- `IIF`: ternary function
+    - `SELECT IIF(quantity < 10, "Low Stock", "In Stock") AS stock FROM inventory;`
  
 ## Constraints
 

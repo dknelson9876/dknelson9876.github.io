@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sphenodon, My Custom Pelican Theme - dknelsonWiki</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Fira+Code:wght@500|Fira+Sans+Condensed|Cantarell|VT323&display=swap"
+        rel="stylesheet">
+
+    <link type="text/css" href="/theme/css/sphenodon.css" rel="stylesheet">
+    <link type="text/css" href="/theme/css/pygments.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+
+
+
+
+<meta name="tags" content="pelican" />
+
+</head>
+
+<body>
+    <div id="layout" class="pure-g">
+
+        <div class="sidebar pure-u-1 pure-u-md-5-24">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>                </div>
+                <div class="sidebar-content">
+                    <div class="toc"></div>
+                </div>
+                <div id="footer"><small>Powered by <a href="http://getpelican.com/">Pelican</a></small></div>
+            </nav>
+        </div>
+
+        <nav class="phone-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>        </nav>
+
+        <div class="content pure-u-1 pure-u-md-4-5">
+            <article>
+<section id="content" class="body">
+    <div class="marginnote">
+        <hr>
+        <div class="article-information">
+            <div class="article-information-heading uppercase">Published</div>
+            <time class="published" datetime="2023-07-10T00:00:00-06:00">
+                Mon 10 July 2023
+            </time>
+            <div class="category">
+                Category: <a href="/categories#pelican-ref">pelican</a>
+            </div>
+            <div class="tags">
+                Tags:
+                <a href="/tags#pelican-ref">pelican</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <header>
+        <h1 class="entry-title">
+            <a href="/sphenodon.html" rel="bookmark"
+                title="Permalink to Sphenodon, My Custom Pelican Theme">Sphenodon, My Custom Pelican Theme</a>
+        </h1>
+    </header>
+    <article class="article-content">
+        <p>With nothing against the default theme that Pelican uses, I personally prefer dark themes. After trying to look around the internet for a suitable theme, I really like the look of the <a href="https://out-of-cheese-error.netlify.app/astrochelys">Astrochelys theme</a>. Unfortunately, when I clone the theme directly, I run into some issues that I am struggling to resolve. Especially with figuring out how to install the expected <code>pelican-toc</code> plugin. So, I'm going to do my best to mash together Astrochelys and the default theme into my own theme, that, in keeping with the apparent theme of naming after creatures, I'm calling Sphenodon (see <a href="https://github.com/dknelson9876/sphenodon">Github repo</a>).</p>
+<p>Most of this work consisted of digging out of the depths of my memory how HTML and CSS work, then finding the right classes to add to the right tags to adopt Astrochelys's theming. There's a lot of things I'm leaving out as well, as I don't care about analytics or RSS feeds.</p>
+<p>I especially like the way that the metadata for the article (date, category, tags) is moved over to the margin, inside a <code>&lt;div class="marginnote"&gt;</code>. I may go back and change that style a little, as I'm wondering if that font is too small. Unfortunately, it looks like this also means it disappears on mobile, so I'll have to do something about that. There is already some styling that is width dependent for the left sidebar, so hopefully that will be a guide.</p>
+<details>
+    <summary>Here's a test of code blocks with the code for the metadata:</summary>
+
+
+<div class="highlight"><pre><span></span><code>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;marginnote&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;article-information&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;article-information-heading uppercase&quot;</span><span class="p">&gt;</span>Published<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">time</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;published&quot;</span> <span class="na">datetime</span><span class="o">=</span><span class="s">&quot;{{ article.date.isoformat() }}&quot;</span><span class="p">&gt;</span>
+                {{ article.locale_date }}
+            <span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span>
+            {% if article.modified %}
+            <span class="p">&lt;</span><span class="nt">time</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;modified&quot;</span> <span class="na">datetime</span><span class="o">=</span><span class="s">&quot;{{ article.modified.isoformat() }}&quot;</span><span class="p">&gt;</span>
+                {{ article.locale_modified }}
+            <span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span>
+            {% endif %}
+            {% if article.category %}
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;category&quot;</span><span class="p">&gt;</span>
+                Category: <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ SITEURL }}/{{ article.category.url }}&quot;</span><span class="p">&gt;</span>{{ article.category }}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            {% endif %}
+            {% if article.tags %}
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tags&quot;</span><span class="p">&gt;</span>
+                Tags:
+                {% for tag in article.tags %}
+                <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ SITEURL }}/{{ tag.url }}&quot;</span><span class="p">&gt;</span>{{ tag }}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+                {% endfor %}
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            {% endif %}
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+
+</details>
+
+<p>Some of the most notable differences in the organization of the site is the removal of the individual 'period-archive', 'tag', and 'category' pages in favor of only having the 'archive', 'tags', and 'categories' pages, which have anchors within the page for the individual years/tags/categories. With my eventual intention to have (at least) a search function for this site, this is far from over.</p>
+<p>I've noticed that I miss the way the default theme shows the first bit of the most recent article, not just the summary, so I should do something about that.</p>
+    </article>
+</section>
+                <hr>
+            </article>
+        </div>
+    </div> </body>
+
+</html>

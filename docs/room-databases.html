@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Room (Databases) - dknelsonWiki</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Fira+Code:wght@500|Fira+Sans+Condensed|Cantarell|VT323&display=swap"
+        rel="stylesheet">
+
+    <link type="text/css" href="/theme/css/sphenodon.css" rel="stylesheet">
+    <link type="text/css" href="/theme/css/pygments.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+
+
+
+
+<meta name="tags" content="kotlin" />
+
+</head>
+
+<body>
+    <div id="layout" class="pure-g">
+
+        <div class="sidebar pure-u-1 pure-u-md-5-24">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>                </div>
+                <div class="sidebar-content">
+                    <div class="toc"></div>
+                </div>
+                <div id="footer"><small>Powered by <a href="http://getpelican.com/">Pelican</a></small></div>
+            </nav>
+        </div>
+
+        <nav class="phone-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>        </nav>
+
+        <div class="content pure-u-1 pure-u-md-4-5">
+            <article>
+<section id="content" class="body">
+    <div class="marginnote">
+        <hr>
+        <div class="article-information">
+            <div class="article-information-heading uppercase">Published</div>
+            <time class="published" datetime="2022-08-01T00:00:00-06:00">
+                Mon 01 August 2022
+            </time>
+            <div class="category">
+                Category: <a href="/categories#kotlin-ref">kotlin</a>
+            </div>
+            <div class="tags">
+                Tags:
+                <a href="/tags#kotlin-ref">kotlin</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <header>
+        <h1 class="entry-title">
+            <a href="/room-databases.html" rel="bookmark"
+                title="Permalink to Room (Databases)">Room (Databases)</a>
+        </h1>
+    </header>
+    <article class="article-content">
+        <h2><code>Entity</code></h2>
+<p>Using Room, tables are created with via an Entity. A class tagged <code>@Entity</code> then uses each property to represent a column in the table</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Entity</span><span class="p">(</span><span class="n">tableName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;word_table&quot;</span><span class="p">)</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Word</span><span class="w"> </span><span class="p">(</span><span class="nd">@PrimaryKey</span><span class="w"> </span><span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;word&quot;</span><span class="p">)</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">word</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li>When you want the name of the table to be different than the name of the class, use the <code>tableName</code> option of <code>@Entity</code></li>
+<li>Every entity needs a primary key, notated with <code>@PrimaryKey</code></li>
+<li>Similar to <code>tableName</code>, if you want the column name to not match the property name, use the <code>name</code> option of <code>@ColumnInfo</code></li>
+<li>You cannot have private properties in an entity</li>
+</ul>
+<h2>DAO</h2>
+<p>DAO stands for 'data access object', and allows us to match up SQL queries to method calls. It must be an interface or abstract class. The included annotations for within a DAO include:
+- <code>@Query</code>, which requires a string query as a parameter
+    <code>kotlin
+    @Query("SELECT * FROM word_table ORDER BY word ASC")
+    fun getAlphabetizedWords(): List&lt;Word&gt;</code>
+- <code>@Insert</code>, which does not need a query
+    - specify what to do about conflicts using the <code>onConflict</code> parameter. <code>OnConflictStrategy.IGNORE</code> tells the table to ignore an insert if the entry already exists
+    <code>kotlin
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(word: Word)</code></p>
+<blockquote>
+<p>Sidenote: <code>suspend</code> tells the system that this function may hang while it waits for a response, and is related to coroutines
+- <code>@Delete</code>
+- <code>@Update</code></p>
+</blockquote>
+<h2><code>Room</code></h2>
+<p>The actual class that represents the database. Annotated with the <code>@Database</code> tag. Must be abstract.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Annotates class to be a Room Database with a table (entity) of the Word class</span>
+<span class="nd">@Database</span><span class="p">(</span><span class="n">entities</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arrayOf</span><span class="p">(</span><span class="n">Word</span><span class="o">::</span><span class="n">class</span><span class="p">),</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">exportSchema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
+<span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">WordRoomDatabase</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">RoomDatabase</span><span class="p">(){</span>
+
+<span class="w">    </span><span class="kd">abstract</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">wordDao</span><span class="p">():</span><span class="w"> </span><span class="n">WordDao</span>
+
+<span class="w">    </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="err">{</span>
+<span class="w">        </span><span class="c1">// Singleton prevents multiple instances of database opening</span>
+<span class="w">        </span><span class="c1">// at the same time.</span>
+<span class="w">        </span><span class="nd">@Volatile</span>
+<span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">INSTANCE</span><span class="p">:</span><span class="w"> </span><span class="n">WordRoomDatabase? </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getDatabase</span><span class="p">(</span><span class="n">context</span><span class="p">:</span><span class="w"> </span><span class="n">Context</span><span class="p">):</span><span class="w"> </span><span class="n">WordRoomDatabase</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">INSTANCE</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="n">synchronized</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">val</span><span class="w"> </span><span class="nv">instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Room</span><span class="p">.</span><span class="na">databaseBuilder</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">context</span><span class="p">.</span><span class="na">applicationContext</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">WordRoomDatabase</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">,</span>
+<span class="w">                    </span><span class="s">&quot;word_database&quot;</span>
+<span class="w">                </span><span class="p">).</span><span class="na">build</span><span class="p">()</span>
+<span class="w">                </span><span class="n">INSTANCE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">instance</span>
+<span class="w">                </span><span class="n">instance</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+    </article>
+</section>
+                <hr>
+            </article>
+        </div>
+    </div> </body>
+
+</html>

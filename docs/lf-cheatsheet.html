@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>lf Cheatsheet - dknelsonWiki</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Fira+Code:wght@500|Fira+Sans+Condensed|Cantarell|VT323&display=swap"
+        rel="stylesheet">
+
+    <link type="text/css" href="/theme/css/sphenodon.css" rel="stylesheet">
+    <link type="text/css" href="/theme/css/pygments.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+
+
+
+
+<meta name="tags" content="terminal" />
+<meta name="tags" content="lf" />
+
+</head>
+
+<body>
+    <div id="layout" class="pure-g">
+
+        <div class="sidebar pure-u-1 pure-u-md-5-24">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>                </div>
+                <div class="sidebar-content">
+                    <div class="toc"></div>
+                </div>
+                <div id="footer"><small>Powered by <a href="http://getpelican.com/">Pelican</a></small></div>
+            </nav>
+        </div>
+
+        <nav class="phone-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>        </nav>
+
+        <div class="content pure-u-1 pure-u-md-4-5">
+            <article>
+<section id="content" class="body">
+    <div class="marginnote">
+        <hr>
+        <div class="article-information">
+            <div class="article-information-heading uppercase">Published</div>
+            <time class="published" datetime="2022-11-03T00:00:00-06:00">
+                Thu 03 November 2022
+            </time>
+            <time class="modified" datetime="2023-01-14T00:00:00-07:00">
+                Sat 14 January 2023
+            </time>
+            <div class="category">
+                Category: <a href="/categories#terminal-ref">terminal</a>
+            </div>
+            <div class="tags">
+                Tags:
+                <a href="/tags#terminal-ref">terminal</a>
+                <a href="/tags#lf-ref">lf</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <header>
+        <h1 class="entry-title">
+            <a href="/lf-cheatsheet.html" rel="bookmark"
+                title="Permalink to lf Cheatsheet">lf Cheatsheet</a>
+        </h1>
+    </header>
+    <article class="article-content">
+        <p><a href="https://github.com/gokcehan/lf">Github Repo</a></p>
+<p>Windows: </p>
+<blockquote>
+<p><code>choco install lf</code></p>
+</blockquote>
+<p>Linux:</p>
+<blockquote>
+<p><code>curl -L https://github.com/gokcehan/lf/releases/latest/download/lf-linux-amd64.tar.gz | tar xzC ~/.local/bin</code></p>
+</blockquote>
+<h2>Keyboard Shortcuts</h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Key</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quit</td>
+<td><kbd>q</kbd></td>
+</tr>
+<tr>
+<td>Move Cursor (up, left, right, down)</td>
+<td><kbd>h</kbd>, <kbd>j</kbd>, <kbd>k</kbd>, <kbd>l</kbd></td>
+</tr>
+<tr>
+<td>Move Page (up, down)</td>
+<td><kbd>Ctrl</kbd>+<kbd>b</kbd>, <kbd>Ctrl</kbd>+<kbd>f</kbd></td>
+</tr>
+<tr>
+<td>Move to Top; Bottom</td>
+<td><kbd>g</kbd>, <kbd>g</kbd>; <kbd>G</kbd></td>
+</tr>
+<tr>
+<td>Toggle Select</td>
+<td><kbd>Space</kbd></td>
+</tr>
+<tr>
+<td>Invert Selection</td>
+<td><kbd>v</kbd></td>
+</tr>
+<tr>
+<td>Clear Selection</td>
+<td><kbd>u</kbd></td>
+</tr>
+<tr>
+<td>Copy Selection</td>
+<td><kbd>y</kbd></td>
+</tr>
+<tr>
+<td>Cut Selection</td>
+<td><kbd>d</kbd></td>
+</tr>
+<tr>
+<td>Paste</td>
+<td><kbd>p</kbd></td>
+</tr>
+<tr>
+<td>Clear Clipboard</td>
+<td><kbd>c</kbd></td>
+</tr>
+<tr>
+<td><code>lf</code> Command</td>
+<td><kbd>:</kbd></td>
+</tr>
+<tr>
+<td>Shell Command</td>
+<td><kbd>$</kbd></td>
+</tr>
+<tr>
+<td>Set Find</td>
+<td><kbd>/</kbd></td>
+</tr>
+<tr>
+<td>Find Next</td>
+<td><kbd>n</kbd></td>
+</tr>
+<tr>
+<td>Find Prev</td>
+<td><kbd>N</kbd></td>
+</tr>
+<tr>
+<td>Open in Editor</td>
+<td><kbd>e</kbd></td>
+</tr>
+</tbody>
+</table>
+    </article>
+</section>
+                <hr>
+            </article>
+        </div>
+    </div> </body>
+
+</html>

@@ -1,18 +1,14 @@
-name: Deploy
-
+name: Deploy to GitHub Pages
 on:
-  # Trigger the workflow on push on main branch,
   push:
-    branches:
-      - main
-
+    branches: ["main"]
+  workflow_dispatch:
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        submodules: 'true'
-    - uses: diegoquintanav/pelican-to-github-pages@v1.3.1
-      env:
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  deploy:
+    uses: "getpelican/pelican/.github/workflows/github_pages.yml@master"
+    permissions:
+      contents: "read"
+      pages: "write"
+      id-token: "write"
+    with:
+      settings: "publishconf.py"

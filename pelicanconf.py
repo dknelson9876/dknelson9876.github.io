@@ -1,6 +1,6 @@
 AUTHOR = 'dknelson'
 SITENAME = 'dknelsonWiki'
-SITEURL = ''
+SITEURL = 'dknelson.dev'
 
 PATH = 'content'
 
@@ -30,3 +30,6 @@ DEFAULT_PAGINATION = 10
 THEME = "./sphenodon"
 TAG_SAVE_AS = ''
 CATEGORY_SAVE_AS = ''
+
+STATIC_PATHS = ['extra/CNAME']
+EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},}

@@ -1,3 +1,4 @@
+---
 Title: Makefile Techniques
 Date: 2023-12-06
 Tags: c, makefile
@@ -5,7 +6,7 @@ Summary: In the process of the senior project, I learned more things about makef
 
 Longer description TODO
 
--------
+---
 
 
 ### Conditional Blocks ([stackoverflow](https://stackoverflow.com/questions/6269857/makefile-support-for-multiple-architectures-configurations))

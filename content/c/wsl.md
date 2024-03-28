@@ -1,4 +1,4 @@
-Title: Unset Title
+Title: WSL Versions
 Date: 2023-12-06
 Tags: win10, wsl
 Summary: Just a place to note down a command

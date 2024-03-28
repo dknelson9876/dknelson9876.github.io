@@ -1,4 +1,4 @@
-Title: Unset Title
+Title: Makefile Techniques
 Date: 2023-12-06
 Tags: c, makefile
 Summary: In the process of the senior project, I learned more things about makefiles

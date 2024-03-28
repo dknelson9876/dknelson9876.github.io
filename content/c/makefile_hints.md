@@ -2,12 +2,9 @@
 Title: Makefile Techniques
 Date: 2023-12-06
 Tags: c, makefile
+slug: makefile-cheatsheet
 Summary: In the process of the senior project, I learned more things about makefiles
-
-Longer description TODO
-
 ---
-
 
 ### Conditional Blocks ([stackoverflow](https://stackoverflow.com/questions/6269857/makefile-support-for-multiple-architectures-configurations))
 

@@ -2,6 +2,7 @@
 Title: Windows Terminal Cheatsheet
 Date: 2022-11-04
 Tags: terminal, winterm
+slug: winterm-cheatsheet
 Summary: Cheatsheet on using Windows Terminal
 ---
 

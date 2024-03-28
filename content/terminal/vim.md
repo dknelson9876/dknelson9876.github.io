@@ -3,6 +3,7 @@ Title: Vim Cheatsheet
 Date: 2022-11-03
 Modified: 2024-01-08
 Tags: terminal, vim
+slug: vim-cheatsheet
 Summary: Cheatsheet for vim/nvim
 ---
 

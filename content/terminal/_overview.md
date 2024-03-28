@@ -2,6 +2,7 @@
 Title: A List of some CLIs that I am using
 Date: 2022-10-28
 Tags: terminal, nala, zsh
+slug: cli-list
 Summary: Notes on a higher level about a few different CLIs that don't deserve their own page
 ---
 

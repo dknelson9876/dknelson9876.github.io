@@ -1,8 +1,10 @@
+---
 Title: Sphenodon, My Custom Pelican Theme
 Date: 2023-07-10
 Tags: pelican
-Authors: dknelson
+slug: sphenodon
 Summary: I'd prefer this website had a darkmode. The best looking theme I found is broken, so time to recreate myself
+---
 
 With nothing against the default theme that Pelican uses, I personally prefer dark themes. After trying to look around the internet for a suitable theme, I really like the look of the [Astrochelys theme](https://out-of-cheese-error.netlify.app/astrochelys). Unfortunately, when I clone the theme directly, I run into some issues that I am struggling to resolve. Especially with figuring out how to install the expected `pelican-toc` plugin. So, I'm going to do my best to mash together Astrochelys and the default theme into my own theme, that, in keeping with the apparent theme of naming after creatures, I'm calling Sphenodon (see [Github repo](https://github.com/dknelson9876/sphenodon)).
 

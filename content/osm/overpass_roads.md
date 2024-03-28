@@ -3,6 +3,7 @@ Title: Overpass Queries for Roads in SLCo
 Date: 2023-11-27
 Modified: 2024-03-28
 Tags: osm, overpass-turbo
+slug: overpass-utah-roads
 Summary: A collection of overpass turbo queries for reviewing roads in Utah
 ---
 

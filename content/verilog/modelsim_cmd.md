@@ -1,9 +1,10 @@
-Title: Notes on a ModelSim Guide
+---
+Title: ModelSim Cheatsheet
 Date: 2023-07-02
 Tags: verilog, modelsim
-Authors: dknelson
+slug: modelsim-cheatsheet
 Summary: I'm trying to figure out how to use ModelSim as a standalone program for compiling and synthesizing verilog
-
+---
 
 In my search to learn how to use modelsim as a standalone program for my senior project (as opposed to being bundled into Quartus, as I was taught in a previous university course), I came across a random old pdf made by Mentor, that helped me put together the following commands:
 

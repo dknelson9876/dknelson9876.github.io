@@ -1,11 +1,10 @@
+---
 Title: WSL Versions
 Date: 2023-12-06
 Tags: win10, wsl
+slug: wsl-cheatsheet
 Summary: Just a place to note down a command
-
-The command for changing what wsl version a specific distribution is running
-
--------
+---
 
 To downgrade the distro nicknamed `ubuntu` to WSL1:
 

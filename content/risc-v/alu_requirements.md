@@ -1,7 +1,10 @@
+---
 Title: Notes on a RISC-V ALU
 Date: 2023-07-03
 Tags: verilog, risc-v
+slug: riscv-alu
 Summary: I need to write an ALU for my senior projet. But first I need to figure out the requirements.
+---
 
 As part of my senior project to build a RISC-V processor, I've been assigned/chosen to design the ALU. That means I'm going to need to figure out what a RISC-V ALU needs. My main source here is the latest RISC-V Instruction Set Manual (Unprivileged ISA), [link](https://riscv.org/wp-content/uploads/2019/12/riscv-spec-20191213.pdf), as of writing that's version 20191213.
 

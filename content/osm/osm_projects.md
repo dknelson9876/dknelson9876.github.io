@@ -3,9 +3,9 @@ Title: OpenStreetMap Projects
 Date: 2024-02-19
 Modified: 2024-03-25
 tags: osm, projects
+slug: osm-projects
 Summary: A list of the projects I've dipped my toes into in OpenStreetMap
 ---
-
 
 - Removing `name_1` from Salt Lake County
     - Including standardizing names according to wiki/Utah/NamingConventions

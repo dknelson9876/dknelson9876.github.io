@@ -2,8 +2,10 @@
 Title: Notes on green landcover tags in OpenStreetMap
 Date: 2024-02-04
 Tags: osm
+slug: osm-green-landcover
 Summary: The official OSM wiki feels overly verbose sometimes, so I wrote down my concise understanding of everything that counts as green landcover
 ---
+
 **Natural (unmanaged)**:
 - Wood (`natural=wood`): Unmanaged land covered by trees
 - Scrub (`natural=scrub`): Land covered by uncultivated shrubs, bushes, or stunted trees of medium height. Note difference from `natural=shrub`, which is for single plants

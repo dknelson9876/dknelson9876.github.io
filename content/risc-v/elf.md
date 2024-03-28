@@ -1,7 +1,10 @@
+---
 Title: Notes on ELF Files
 Date: 2023-08-07
 Tags: risc-v, gcc
+slug: elf-files
 Summary: It's my job to figure out how to compile programs for RISC-V, or else I'm gonna have to write a bunch of asm again
+---
 
 As a continuation of working with the RISC-V version of GCC, I want to make sure I understand more details about the nuances of ELF files, to make sure nothing goes wrong and we won't have any issues using memory mapped I/O in our processor. Especially since if I can get away with it, being eventually able to `printf` to an LED array would be pretty cool, but is dependent on learning how `printf` actually works in the background
 

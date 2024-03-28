@@ -1,9 +1,9 @@
+---
 Title: GDB Cheatsheet
 Date: 2023-01-14
 Tags: c
 Summary: Useful less common things about GDB
-
--------
+---
 
 # GNU Debugger
 

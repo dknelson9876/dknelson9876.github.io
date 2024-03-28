@@ -2,6 +2,7 @@
 Title: Factorio Docker
 Date: 2022-11-04
 Tags: terminal, docker, factorio
+slug: factorion-on-docker
 Summary: Notes on how I hosted Factorio in a Docker container
 ---
 

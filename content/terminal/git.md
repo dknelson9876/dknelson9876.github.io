@@ -1,7 +1,8 @@
 ---
-Title: Git Notes
+Title: Git Cheatsheet
 Date: 2022-11-03
 Tags: terminal, git
+slug: git-cheatsheet
 Summary: Very basic notes on using Git
 ---
 

@@ -1,9 +1,10 @@
 ---
-Title: `lf` Terminal File Manager
+Title: lf Cheatsheet
 Date: 2022-11-03
 Modified: 2023-01-14
 Tags: terminal, lf
-Summary: Cheatsheet on using lf
+slug: lf-cheatsheet
+Summary: Cheatsheet on using lf, the terminal file manager
 ---
 
 [Github Repo](https://github.com/gokcehan/lf)

@@ -1,10 +1,10 @@
+---
 Title: Making backups using `rsnapshot`
 Date: 2023-12-29
 Tags: linux, backups
+slug: rsnapshot-cheatsheet
 Summary: Now that I have two drives in my server, time to follow good practice and make backups
-
-
--------
+---
 
 ## Backup Methods
 

@@ -1,10 +1,10 @@
+---
 Title: Partitioning and Formatting New Drives in Linux
 Date: 2023-12-29
 Tags: linux, storage
+slug: linux-new-drive
 Summary: I had a new drive to install in my server, so I learned how to use `fdisk`
-
-
--------
+---
 
 ## Step 1: Create a Partition
 

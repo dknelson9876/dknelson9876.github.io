@@ -2,6 +2,7 @@
 Title: SSH on CADE
 Date: 2022-11-04
 Tags: terminal, ssh, vscode
+slug: ssh-on-cade
 Summary: Guide on how to setup integration between SSH and VScode on my university's lab machines
 ---
 

@@ -24,12 +24,33 @@ Summary: A Cheatsheet for using SQL
 
 - `WHERE`: for filtering
     - `SELECT name FROM users WHERE age > 18;`
-    - Accepts `=`, `<=`, `>=`, `IS NULL`, `IS NOT NULL`
+    - Accepts `=`, `<`, `<=`, `>`, `>=`, `IS NULL`, `IS NOT NULL`
+    - Logical operators `AND` and `OR` can be used to combine filters
+- `IN`: for filtering from a list
+    - `SELECT * FROM users WHERE country_code IN ("CA", "US", "MX");`
+- `LIKE`: for very simple string matching
+    - `%` stands for 0 or more characters
+    - `_` stands for 1 character
+    - `SELECT name FROM products WHERE name LIKE "%banana%";` (name contains "banana")
+- `LIMIT`: puts a cap on the number of records returned
+    - `SELECT * FROM users WHERE country_code = "US" LIMIT 50;`
 - `AS`: for single time column renaming
     - `SELECT employee_id AS id FROM employees;`
     - Useful when calculating new values in a query
 - `IIF`: ternary function
     - `SELECT IIF(quantity < 10, "Low Stock", "In Stock") AS stock FROM inventory;`
+- `BETWEEN`: for checking ranges
+    - `SELECT * FROM users WHERE age BETWEEN 18 AND 65;`
+- `DISTINCT`: for removing duplicates in results
+    - `SELECT DISTINCT region FROM users;`
+- `ORDER BY`: for sorting records
+    - `SELECT * FROM users ORDER BY age;`
+    - By default sorts by `ASC`, but can also specify `DESC`
+    - Must come **before** `LIMIT`
+- `GROUP BY`: combines rows into records with matching values
+    - `SELECT user_id, sum(amount) FROM transactions GROUP BY user_id;`
+- `HAVING`: `WHERE` but for groups instead of individual records
+    - `SELECT sum(amount) AS balance FROM transactions GROUP BY user_id HAVING balance > 20;`
  
 ## Constraints
 
@@ -51,7 +72,17 @@ Summary: A Cheatsheet for using SQL
 - `BLOB` - *B*inary *L*arge *Ob*ject
 - `BOOLEAN` - Technically represented as 0/1, like C does
 
-## Other Commands(?)
+## Aggregators
 
-- count: returns an integer count of the number of results that were returned, instead of the actual results
+- `count`: returns an integer count of the number of results that were returned, instead of the actual results
     - `SELECT count(*) FROM users;`
+- `sum`: returns an integer sum of the selected records
+    - `SELECT sum(amount) FROM transactions WHERE user_id=2;`
+- `max`: returns the single largest value from the selected records
+    - `SELECT max(amount) FROM transactions;`
+- `min`: returns the single smallest value from the selected records
+    - `SELECT min(amount) FROM transactions;`
+- `avg`: returns the average value from the selected records
+    - `SELECT avg(age) from users;`
+- `round(<value>, <precision>)`: round a value, where `<precision>` is the number of digits past the decimal point
+    - `SELECT round(avg(age)) from users;`

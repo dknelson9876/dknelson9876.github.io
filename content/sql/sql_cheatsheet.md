@@ -86,3 +86,16 @@ Summary: A Cheatsheet for using SQL
     - `SELECT avg(age) from users;`
 - `round(<value>, <precision>)`: round a value, where `<precision>` is the number of digits past the decimal point
     - `SELECT round(avg(age)) from users;`
+
+## Subqueries
+
+Insert queries into other queries by surrounding them with parentheses.
+```sql
+SELECT id, song_name, artist_id
+FROM songs
+WHERE artist_id IN (
+    SELECT id
+    FROM artists
+    WHERE artist_name LIKE 'Rick%'
+);
+```

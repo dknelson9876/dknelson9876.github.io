@@ -99,3 +99,9 @@ WHERE artist_id IN (
     WHERE artist_name LIKE 'Rick%'
 );
 ```
+
+## Joins
+
+- Inner Join: Match each record from the first table with a record from the second table, but only the ones that have a match. This is also the default join.
+    - `SELECT * FROM users INNER JOIN countries ON users.country_code = countries.code;`
+- Left Join: Match each record from the first table with a record from the second table, and return every record from the first table.

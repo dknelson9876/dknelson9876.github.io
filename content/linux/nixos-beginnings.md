@@ -82,4 +82,17 @@ The changes I had to make were as follows:
   ```
 Then just rebuild nixos, and voila, my wonderful remap is here.
 
+## Windows Dual boot
 
+The correct lines for the configuration file to get grub to find a list windows were:
+```nix
+boot.loader = {
+  efi.canTouchEfiVariables = true;
+  grub = {
+    enable = true;
+    device = "nodev";
+    efiSupport = true;
+    useOSProber = true;
+  };
+};
+```

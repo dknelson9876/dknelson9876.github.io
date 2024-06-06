@@ -1,12 +1,15 @@
 ---
 Title: Getting started with NixOS
 Date: 2024-04-21
+Modified: 2024-06-06
 Tags: linux, nixos
 slug: nixos-beginnings
 Summary: With the impending threat of Windows 10 EOL, I want to go back to daily driving Linux.
 ---
 
 ## NixOS
+
+> Update: After facing several issues while trying to install some packages from the stable branch and others from the unstable branch of nix-pkgs, I've switched to Fedora. After a couple weeks with KDE, I've also started using i3, and it's been good so far.
 
 After having some keyboard issues with several install attempts in a row of several versions of Ubuntu, I gave up on it. I decided that it was finally time for me to try a different distro, and I've heard a lot about NixOS recently, so I figured I'd give it a try. There was only two small hiccups that I ran into:
 

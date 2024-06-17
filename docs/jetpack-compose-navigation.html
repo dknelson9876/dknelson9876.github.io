@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Jetpack Compose Navigation - dknelsonWiki</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Fira+Code:wght@500|Fira+Sans+Condensed|Cantarell|VT323&display=swap"
+        rel="stylesheet">
+
+    <link type="text/css" href="/theme/css/sphenodon.css" rel="stylesheet">
+    <link type="text/css" href="/theme/css/pygments.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+
+
+
+
+<meta name="tags" content="kotlin" />
+
+</head>
+
+<body>
+    <div id="layout" class="pure-g">
+
+        <div class="sidebar pure-u-1 pure-u-md-5-24">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>                </div>
+                <div class="sidebar-content">
+                    <div class="toc"></div>
+                </div>
+                <div id="footer"><small>Powered by <a href="http://getpelican.com/">Pelican</a></small></div>
+            </nav>
+        </div>
+
+        <nav class="phone-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>        </nav>
+
+        <div class="content pure-u-1 pure-u-md-4-5">
+            <article>
+<section id="content" class="body">
+    <div class="marginnote">
+        <hr>
+        <div class="article-information">
+            <div class="article-information-heading uppercase">Published</div>
+            <time class="published" datetime="2022-07-25T00:00:00-06:00">
+                Mon 25 July 2022
+            </time>
+            <div class="category">
+                Category: <a href="/categories#kotlin-ref">kotlin</a>
+            </div>
+            <div class="tags">
+                Tags:
+                <a href="/tags#kotlin-ref">kotlin</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <header>
+        <h1 class="entry-title">
+            <a href="/jetpack-compose-navigation.html" rel="bookmark"
+                title="Permalink to Jetpack Compose Navigation">Jetpack Compose Navigation</a>
+        </h1>
+    </header>
+    <article class="article-content">
+        <h2><code>NavController</code></h2>
+<p>The central component for navigation in Compose:
+- tracks back stack composable entries
+- moves the stack forward
+- enables back stack manipulation
+- navigates between destination states</p>
+<p>Because of how central it is, it is the first step for setting up navigation.</p>
+<p>The <code>NavController</code> is obtained by calling <code>rememberNavController()</code>. This should always be done in the top level of your composable hierarchy. </p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">MyApp</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">MyAppTheme</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">navController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberNavController</span><span class="p">()</span>
+<span class="w">        </span><span class="c1">// ...</span>
+<span class="w">        </span><span class="n">Scaffold</span><span class="p">(</span>
+<span class="w">            </span><span class="c1">// ...</span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// ...</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2><code>NavHost</code></h2>
+<p>Part 2 of the 3 components required for navigation. The <code>NavHost</code> acts as a container and is responsible for displaying the current destination of the graph. Every <code>NavController</code> should always be associated with exactly one <code>NavHost</code>. It also serves to link the <code>NavController</code> to the third component, the <code>NavGraph</code>, which maps out the composable destinations to navigate between.</p>
+<p>When creating the <code>NavHost</code>, you also must specify the <code>startDestination</code> route of which screen to display when the app is opened.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">Scaffold</span><span class="p">(...)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">NavHost</span><span class="p">(</span>
+<span class="w">            </span><span class="n">navController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">navController</span><span class="p">,</span>
+<span class="w">            </span><span class="n">startDestination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HomeScreen</span><span class="p">.</span><span class="na">route</span><span class="w"> </span><span class="cm">/*a string*/</span><span class="p">,</span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">//...</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+
+<h2><code>NavGraph</code></h2>
+<p>Part 3 of 3. Acts as the destination/route handler, and is defined using the <code>NavGraphBuilder.composable</code> extension function. Each screen needs to individually have it's route and matching screen added.</p>
+<div class="highlight"><pre><span></span><code><span class="n">NavHost</span><span class="p">(...){</span>
+<span class="w">    </span><span class="n">composable</span><span class="p">(</span><span class="n">route</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HomeScreen</span><span class="p">.</span><span class="na">route</span><span class="p">){</span>
+<span class="w">        </span><span class="n">HomeScreen</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">composable</span><span class="p">(</span><span class="n">route</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SettingsScreen</span><span class="p">.</span><span class="na">route</span><span class="p">){</span>
+<span class="w">        </span><span class="n">SettingsScreen</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>From here, you can react to an appropriate button press within your app by calling</p>
+<div class="highlight"><pre><span></span><code><span class="n">navController</span><span class="p">.</span><span class="na">navigate</span><span class="p">(</span><span class="n">newRoute</span><span class="p">)</span>
+</code></pre></div>
+
+<h2>Navigation Options</h2>
+<p>These come from the <code>NavOptionsBuilder</code> class, and are for use with calls to <code>navController.navigate()</code>
+- <code>launchSingleTop</code> : ensures that only one instance of each screen exists. If false, each call to <code>navigate()</code> will launch a new instance
+- <code>popUpTo(route) {saveState = true}</code> : pops up to the beginning of the back stack, removing long chains of screens.
+- <code>restoreState</code> : should state (such as scroll position) be saved and restored when navigating between screens?</p>
+<h2>Passing Screen Changes</h2>
+<p>In the cases where you need to know the current screen (like a custom tab row that shows the selected tab a different color), we can get the top of the backstack from the <code>NavController</code>. Because this is returned as a <code>NavDestination</code>, you'll also need a way to connect it to one of your screens (i.e. using the <code>route</code> String as a psuedo id).</p>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">navController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rememberNavController</span><span class="p">()</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">currentBackStack</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">navController</span><span class="p">.</span><span class="na">currentBackStackEntryAsState</span><span class="p">()</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">currentDestination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentBackStack</span><span class="o">?.</span><span class="na">destination</span>
+</code></pre></div>
+
+<blockquote>
+<h4>Aside: <code>list.find</code></h4>
+<p>A handy shortcut Kotlin method
+<code>kotlin
+val currentScreen = TabRowScreens.find {it.route == currentDestination.route} ?: Overview</code>
+is equivalent to 
+<code>kotlin
+var currentScreen = Overview
+for (screen in TabRowScreens) {
+   if (screen.route == currentDestination.route)
+      currentScreen = screen
+}</code></p>
+</blockquote>
+<h2>Navigation Arguments</h2>
+    </article>
+</section>
+                <hr>
+            </article>
+        </div>
+    </div> </body>
+
+</html>

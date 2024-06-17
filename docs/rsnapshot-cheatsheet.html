@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Making backups using `rsnapshot` - dknelsonWiki</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Fira+Code:wght@500|Fira+Sans+Condensed|Cantarell|VT323&display=swap"
+        rel="stylesheet">
+
+    <link type="text/css" href="/theme/css/sphenodon.css" rel="stylesheet">
+    <link type="text/css" href="/theme/css/pygments.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+
+
+
+
+<meta name="tags" content="linux" />
+<meta name="tags" content="backups" />
+
+</head>
+
+<body>
+    <div id="layout" class="pure-g">
+
+        <div class="sidebar pure-u-1 pure-u-md-5-24">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>                </div>
+                <div class="sidebar-content">
+                    <div class="toc"></div>
+                </div>
+                <div id="footer"><small>Powered by <a href="http://getpelican.com/">Pelican</a></small></div>
+            </nav>
+        </div>
+
+        <nav class="phone-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>        </nav>
+
+        <div class="content pure-u-1 pure-u-md-4-5">
+            <article>
+<section id="content" class="body">
+    <div class="marginnote">
+        <hr>
+        <div class="article-information">
+            <div class="article-information-heading uppercase">Published</div>
+            <time class="published" datetime="2023-12-29T00:00:00-07:00">
+                Fri 29 December 2023
+            </time>
+            <div class="category">
+                Category: <a href="/categories#linux-ref">linux</a>
+            </div>
+            <div class="tags">
+                Tags:
+                <a href="/tags#linux-ref">linux</a>
+                <a href="/tags#backups-ref">backups</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <header>
+        <h1 class="entry-title">
+            <a href="/rsnapshot-cheatsheet.html" rel="bookmark"
+                title="Permalink to Making backups using `rsnapshot`">Making backups using `rsnapshot`</a>
+        </h1>
+    </header>
+    <article class="article-content">
+        <h2>Backup Methods</h2>
+<p>As far as I can tell, there are two main paradigms of local backups. You either make an archive, and keep continuous archives, or you make plain copies of the files, but then as backups build you use links to point to the unchanged files from the last backup. Since I'm backing up a lot of family photos, I chose to use copies and links through <code>rsnapshot</code>, as that feels like it will use less space in the end.</p>
+<h2>Setting up <code>rsnapshot</code></h2>
+<p>After installing it through my package manager, it was relatively simple to setup. The default location for the config file is at <code>/etc/rsnapshot.conf</code>, and for my use case most of the defaults were fine. The only thing I had to change was to set <code>snapshot_root</code> to a folder called <code>backups</code> on my smaller hard drive, set the <code>retain</code> values to keep 6 daily backups, 7 weekly backups, and 4 monthly backups, and finally point the <code>backup</code> values to the folders I wanted to backup, being <code>/home</code> and <code>/mnt/black</code></p>
+<h2>Automating <code>rsnapshot</code></h2>
+<p>To make this backup routines actually run on a regular schedule, I added them to the cron tab using <code>sudo crontab -e</code>. The specific rules I entered were:</p>
+<div class="highlight"><pre><span></span><code># Run daily backups at 00:05 daily
+5 0 * * *       /usr/bin/rsnapshot daily
+# Run weekly backups at 01:05 on Sundays
+5 1 * * SUN     /usr/bin/rsnapshot weekly
+# Run monthly backups at 02:05 on the 1st
+5 2 1 * *       /usr/bin/rsnapshot monthly
+</code></pre></div>
+
+<p>Notice that I scheduled each job to run at a different hour, to give each one plenty of time to not run into another one.</p>
+<h2>Restoring a backup from <code>rsnapshot</code></h2>
+<p>Finally, in the case that something goes wrong, we use <code>rsync</code> to restore backups made by <code>rsnapshot</code>, since that is what it's using in the background. The specific example I tested was having a folder at <code>/mnt/black/dummy</code> backed up to <code>/mnt/Vault/backups/daily.0/dummy/mnt/black/dummy</code>, which I restored using the command:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>rsync<span class="w"> </span>-av<span class="w"> </span>--numeric-ids<span class="w"> </span>--delete<span class="w"> </span>/mnt/Vault/backups/daily.0/dummy/mnt/black/dummy<span class="w"> </span>/mnt/black
+</code></pre></div>
+    </article>
+</section>
+                <hr>
+            </article>
+        </div>
+    </div> </body>
+
+</html>

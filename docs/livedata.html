@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>`LiveData` - dknelsonWiki</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Fira+Code:wght@500|Fira+Sans+Condensed|Cantarell|VT323&display=swap"
+        rel="stylesheet">
+
+    <link type="text/css" href="/theme/css/sphenodon.css" rel="stylesheet">
+    <link type="text/css" href="/theme/css/pygments.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+
+
+
+
+<meta name="tags" content="kotlin" />
+
+</head>
+
+<body>
+    <div id="layout" class="pure-g">
+
+        <div class="sidebar pure-u-1 pure-u-md-5-24">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>                </div>
+                <div class="sidebar-content">
+                    <div class="toc"></div>
+                </div>
+                <div id="footer"><small>Powered by <a href="http://getpelican.com/">Pelican</a></small></div>
+            </nav>
+        </div>
+
+        <nav class="phone-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>        </nav>
+
+        <div class="content pure-u-1 pure-u-md-4-5">
+            <article>
+<section id="content" class="body">
+    <div class="marginnote">
+        <hr>
+        <div class="article-information">
+            <div class="article-information-heading uppercase">Published</div>
+            <time class="published" datetime="2022-07-26T00:00:00-06:00">
+                Tue 26 July 2022
+            </time>
+            <div class="category">
+                Category: <a href="/categories#kotlin-ref">kotlin</a>
+            </div>
+            <div class="tags">
+                Tags:
+                <a href="/tags#kotlin-ref">kotlin</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <header>
+        <h1 class="entry-title">
+            <a href="/livedata.html" rel="bookmark"
+                title="Permalink to `LiveData`">`LiveData`</a>
+        </h1>
+    </header>
+    <article class="article-content">
+        <p>An <em>observable</em> data holder class that is lifecycle aware. 
+- It holds data, and is designed to serve as a <em>wrapper</em> for any type of data
+- It is <em>observable</em>, so another class can sign up to be notified when the data being held changes
+- It is <em>lifecycle-aware</em>. When a class signs up to observe <code>LiveData</code>, it is associated with a <strong><code>LifecycleOwner</code></strong>. The <code>LiveData</code> then only updates observers that are in an active lifecycle state.</p>
+<h2><code>MutableLiveData</code></h2>
+<p>The mutable version of <code>LiveData</code>. Because <code>LiveData</code> is an object, when we want to access the data that is being stored, use the <code>value</code> property of the <code>LiveData</code>. Common practices recommend having a <code>MutableLiveData</code> backing object, with a public <code>LiveData</code></p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_word</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MutableLiveData</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">word</span><span class="p">:</span><span class="w"> </span><span class="n">LiveData</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="k">get</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_word</span>
+<span class="c1">//...</span>
+<span class="kd">fun</span><span class="w"> </span><span class="err">...(){</span>
+<span class="w">    </span><span class="n">_word</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;...&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2>Attaching an observer</h2>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">viewModel</span><span class="p">.</span><span class="na">word</span><span class="p">.</span><span class="na">observe</span><span class="p">(</span><span class="n">viewLifecycleOwner</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">newValue</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{}}</span>
+</code></pre></div>
+
+<ul>
+<li><code>viewLifecycleOwner</code> is how the <code>LiveData</code> is aware of the lifecycle state of the view, and is inherited from the Activity/Fragment</li>
+<li>The second parameter is a lambda that provides the updated value for whatever logic it is you wanted to do with it.</li>
+</ul>
+<h2>Data Binding</h2>
+<p>Allows you to access <code>LiveData</code> objects directly in the .xml view files. The root element of the view you want to use data binding in should be a <code>&lt;layout&gt;</code> and should also contain a <code>&lt;data&gt;</code> element before the body of the view. In the class that corresponds to the view, inflate it using the <code>DataBindingUtil.inflate()</code> method.</p>
+<p>Inside the <code>&lt;data&gt;</code> tag, include <code>&lt;variable&gt;</code> tags that you then initialize inside the <code>onViewCreated</code> callback of the associated class. Be sure to also provide the binding with the lifecycleOwner, so that it can observe <code>LiveData</code> correctly.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;data&gt;</span>
+<span class="w">    </span><span class="nt">&lt;variable</span>
+<span class="w">        </span><span class="na">name=</span><span class="s">&quot;max&quot;</span>
+<span class="w">        </span><span class="na">type=</span><span class="s">&quot;int&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/data&gt;</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onViewCreated</span><span class="p">(...){</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="n">binding</span><span class="p">.</span><span class="na">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span>
+<span class="w">    </span><span class="n">binding</span><span class="p">.</span><span class="na">lifecycleOwner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewLifecycleOwner</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Once you have done that, you can reference those variables inside the rest of your xml view using <em>binding expressions</em></p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;TextView</span><span class="w"> </span>
+<span class="w">    </span><span class="err">...</span>
+<span class="w">    </span><span class="na">android:text=</span><span class="s">&quot;@{viewModel.name}&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</code></pre></div>
+    </article>
+</section>
+                <hr>
+            </article>
+        </div>
+    </div> </body>
+
+</html>

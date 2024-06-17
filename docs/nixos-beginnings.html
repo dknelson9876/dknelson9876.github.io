@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Getting started with NixOS - dknelsonWiki</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Fira+Code:wght@500|Fira+Sans+Condensed|Cantarell|VT323&display=swap"
+        rel="stylesheet">
+
+    <link type="text/css" href="/theme/css/sphenodon.css" rel="stylesheet">
+    <link type="text/css" href="/theme/css/pygments.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+
+
+
+
+<meta name="tags" content="linux" />
+<meta name="tags" content="nixos" />
+
+</head>
+
+<body>
+    <div id="layout" class="pure-g">
+
+        <div class="sidebar pure-u-1 pure-u-md-5-24">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>                </div>
+                <div class="sidebar-content">
+                    <div class="toc"></div>
+                </div>
+                <div id="footer"><small>Powered by <a href="http://getpelican.com/">Pelican</a></small></div>
+            </nav>
+        </div>
+
+        <nav class="phone-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>        </nav>
+
+        <div class="content pure-u-1 pure-u-md-4-5">
+            <article>
+<section id="content" class="body">
+    <div class="marginnote">
+        <hr>
+        <div class="article-information">
+            <div class="article-information-heading uppercase">Published</div>
+            <time class="published" datetime="2024-04-21T00:00:00-06:00">
+                Sun 21 April 2024
+            </time>
+            <time class="modified" datetime="2024-06-06T00:00:00-06:00">
+                Thu 06 June 2024
+            </time>
+            <div class="category">
+                Category: <a href="/categories#linux-ref">linux</a>
+            </div>
+            <div class="tags">
+                Tags:
+                <a href="/tags#linux-ref">linux</a>
+                <a href="/tags#nixos-ref">nixos</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <header>
+        <h1 class="entry-title">
+            <a href="/nixos-beginnings.html" rel="bookmark"
+                title="Permalink to Getting started with NixOS">Getting started with NixOS</a>
+        </h1>
+    </header>
+    <article class="article-content">
+        <h2>NixOS</h2>
+<blockquote>
+<p>Update: After facing several issues while trying to install some packages from the stable branch and others from the unstable branch of nix-pkgs, I've switched to Fedora. After a couple weeks with KDE, I've also started using i3, and it's been good so far.</p>
+</blockquote>
+<p>After having some keyboard issues with several install attempts in a row of several versions of Ubuntu, I gave up on it. I decided that it was finally time for me to try a different distro, and I've heard a lot about NixOS recently, so I figured I'd give it a try. There was only two small hiccups that I ran into:</p>
+<ul>
+<li>The graphical NixOS installer doesn't have a page for connecting to a network. Some googling led me to <code>nmtui</code>, which I was able to use to connect to my wifi network and go through the installation process.</li>
+<li>Something went wrong with the grub setup, I can only assume related to directly trying to replace Ubuntu with NixOS. I ended up going back into Windows to completely de-partition the SSD, then let the NixOS installer reformat the entire drive for grub + NixOS.</li>
+</ul>
+<h2>NixOS Concepts</h2>
+<p>The whole point of Nix (and NixOS) as I understand it is to make the entire configuation of your computer to be declarative, meaning it's all in config files that you know (and control) where they are, down to installing packages. There's a lot more to Nix that hasn't clicked for me yet, but <a href="https://zero-to-nix.com/">Zero to Nix</a> was helpful for getting the important parts without digging through the entire manual.</p>
+<h2>Config with flakes</h2>
+<p>One important part of Nix that hasn't quite clicked for me yet is flakes. The one thing I've grasped is that it's an addition to the Nix paradigm that replaces channels, and improves reproduceability by creating a companion <code>flake.lock</code> file that records specific versions, similar to <code>cargo.lock</code> for rust or <code>requirements.txt</code> with python. I also know that by putting my entire system config into a flake, I can move the main configuration file out of <code>/etc/nixos/configuration.nix</code> to wherever I want. I got a jump start here using <a href="https://github.com/Misterio77/nix-starter-configs">Misterio77's nix-starter-configs</a>. This also brings up home manager, which I have learned is about bringing traditional .config files into your nix config, but have not actually figured out yet.</p>
+<p>The starter config has left me with:</p>
+<div class="highlight"><pre><span></span><code>~/nix-config/
+├── flake.lock
+├── flake.nix
+├── home-manager
+│   └── home.nix
+└── nixos
+    ├── configuration.nix
+    └── hardware-configuration.nix
+</code></pre></div>
+
+<p>Which has changed my rebuild command from:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nixos-rebuild<span class="w"> </span>switch
+</code></pre></div>
+
+<p>To: (executed from ~/nix-config)</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nixos-rebuild<span class="w"> </span>switch<span class="w"> </span>--flake<span class="w"> </span>.
+</code></pre></div>
+
+<h2>First Configuration: Key remapping</h2>
+<p>I have grown to absolutely love having Caps Lock and Escape swapped, not just while using vim/neovim, but in general it feels like I use escape way more often, so it's really helpful to move it closer. After fiddling around with several different options, I got <a href="https://github.com/xremap/xremap">Xremap</a> working thanks to some wonderful videos by 
+Vimjoyer (<a href="https://www.youtube.com/watch?v=lyxScRCe6bE">main video</a>, <a href="https://www.youtube.com/watch?v=UPWkQ3LUDOU">NixOS companion video</a>). </p>
+<p>The changes I had to make were as follows:
+- In my <code>flake.nix</code>, add the link to xremap as an input
+  <code>nix
+  inputs = {
+    # ...
+    xremap-flake.url = "github:xremap/nix-flake";
+  };</code>
+- In my <code>configuration.nix</code>, include xremap as an import
+  <code>nix
+  imports =
+    [
+      # ...
+      inputs.xremap-flake.nixosModules.default
+    ];</code>
+- In my <code>configuration.nix</code>, enable and configure xremap
+  <code>nix
+  services.xremap = {
+    userName = "my_username";
+    config = {
+      keymap = [
+        {
+          name = "main remaps";
+          remap = {
+            "capslock" = "esc";
+            "esc" = "capslock";
+          };
+        }
+      ];
+    };
+  };</code>
+Then just rebuild nixos, and voila, my wonderful remap is here.</p>
+<h2>Windows Dual boot</h2>
+<p>The correct lines for the configuration file to get grub to find a list windows were:</p>
+<div class="highlight"><pre><span></span><code>boot<span class="o">.</span><span class="ss">loader =</span> <span class="p">{</span>
+  efi<span class="o">.</span><span class="ss">canTouchEfiVariables =</span> <span class="no">true</span><span class="p">;</span>
+  <span class="ss">grub =</span> <span class="p">{</span>
+    <span class="ss">enable =</span> <span class="no">true</span><span class="p">;</span>
+    <span class="ss">device =</span> <span class="s2">&quot;nodev&quot;</span><span class="p">;</span>
+    <span class="ss">efiSupport =</span> <span class="no">true</span><span class="p">;</span>
+    <span class="ss">useOSProber =</span> <span class="no">true</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+</code></pre></div>
+    </article>
+</section>
+                <hr>
+            </article>
+        </div>
+    </div> </body>
+
+</html>

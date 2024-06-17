@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Kotlin Basics - dknelsonWiki</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Fira+Code:wght@500|Fira+Sans+Condensed|Cantarell|VT323&display=swap"
+        rel="stylesheet">
+
+    <link type="text/css" href="/theme/css/sphenodon.css" rel="stylesheet">
+    <link type="text/css" href="/theme/css/pygments.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+
+
+
+
+<meta name="tags" content="kotlin" />
+
+</head>
+
+<body>
+    <div id="layout" class="pure-g">
+
+        <div class="sidebar pure-u-1 pure-u-md-5-24">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>                </div>
+                <div class="sidebar-content">
+                    <div class="toc"></div>
+                </div>
+                <div id="footer"><small>Powered by <a href="http://getpelican.com/">Pelican</a></small></div>
+            </nav>
+        </div>
+
+        <nav class="phone-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>        </nav>
+
+        <div class="content pure-u-1 pure-u-md-4-5">
+            <article>
+<section id="content" class="body">
+    <div class="marginnote">
+        <hr>
+        <div class="article-information">
+            <div class="article-information-heading uppercase">Published</div>
+            <time class="published" datetime="2022-07-26T00:00:00-06:00">
+                Tue 26 July 2022
+            </time>
+            <div class="category">
+                Category: <a href="/categories#kotlin-ref">kotlin</a>
+            </div>
+            <div class="tags">
+                Tags:
+                <a href="/tags#kotlin-ref">kotlin</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <header>
+        <h1 class="entry-title">
+            <a href="/kotlin-basics.html" rel="bookmark"
+                title="Permalink to Kotlin Basics">Kotlin Basics</a>
+        </h1>
+    </header>
+    <article class="article-content">
+        <blockquote>
+<p><a href="https://play.kotlinlang.org/byExample/overview">Learn Kotlin by Example</a></p>
+</blockquote>
+<h1>Introduction</h1>
+<h2>Functions</h2>
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">aFunction</span><span class="p">(</span><span class="n">arg1</span><span class="p">:</span><span class="w"> </span><span class="n">Arg1Type</span><span class="p">,</span><span class="w"> </span><span class="n">optionalArg</span><span class="p">:</span><span class="w"> </span><span class="n">OptionalArgType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">defaultVal</span><span class="p">):</span><span class="w"> </span><span class="n">ReturnType</span><span class="w"> </span><span class="p">{</span>
+<span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="kd">fun</span><span class="w"> </span><span class="nf">printStuff</span><span class="p">(</span><span class="n">stuff</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">prefix</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Info&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">$</span><span class="n">prefix</span><span class="s">] </span><span class="si">$</span><span class="n">stuff</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Many valid ways to call printStuff</span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="s">&quot;thing&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="s">&quot;thing&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="n">stuff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;thing&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="n">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">stuff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;thing&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="w"> </span><span class="err">```</span>
+
+<span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="o">[</span><span class="n">Infix</span><span class="w"> </span><span class="n">Functions</span><span class="o">]</span><span class="p">(</span><span class="n">https</span><span class="p">:</span><span class="c1">//kotlinlang.org/docs/functions.html#infix-notation): `infix`</span>
+<span class="w"> </span><span class="n">Member</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">extension</span><span class="w"> </span><span class="n">functions</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">single</span><span class="w"> </span><span class="n">parameter</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">turned</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="n">`infix`</span><span class="w"> </span><span class="n">functions</span><span class="w"> </span><span class="p">(</span><span class="n">calling</span><span class="w"> </span><span class="nb">it</span><span class="w"> </span><span class="n">doesn</span><span class="err">&#39;</span><span class="n">t</span><span class="w"> </span><span class="n">require</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">dot</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">parentheses</span><span class="p">)</span>
+<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">Almost</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">way</span><span class="w"> </span><span class="n">making</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">own</span><span class="w"> </span><span class="n">keywords? Probably</span><span class="w"> </span><span class="n">how</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">just</span><span class="w"> </span><span class="err">&#39;</span><span class="n">`or`</span><span class="err">&#39;</span>
+<span class="err">```</span><span class="n">kotlin</span>
+<span class="kd">infix</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="n">Int</span><span class="p">.</span><span class="nf">times</span><span class="p">(</span><span class="n">str</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str</span><span class="p">.</span><span class="na">repeat</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="s">&quot;Bye &quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<blockquote>
+<p>Bye Bye</p>
+</blockquote>
+<h2><a href="https://kotlinlang.org/docs/operator-overloading.html">Operator Overloading</a></h2>
+<p>In an addition to infix functions, using the <code>operator</code> keyword with some special names will overload an operator symbol</p>
+<div class="highlight"><pre><span></span><code><span class="kd">operator</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="n">Vector</span><span class="p">.</span><span class="nf">plus</span><span class="p">(</span><span class="n">v2</span><span class="p">:</span><span class="w"> </span><span class="n">Vector</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">v2</span><span class="p">.</span><span class="na">x</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">v2</span><span class="p">.</span><span class="na">y</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="n">aVector</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">anotherVector</span><span class="p">)</span>
+</code></pre></div>
+
+<h2>Varargs</h2>
+<p>A funky kind of inline array? Come back to this. </p>
+<p>The mechanism by which <code>listOf()</code> works, I think</p>
+<h2>Class Declarations</h2>
+<p>In Kotlin, both the header and the body are optional, since the compiler can build the constructor and appropriate getters/setters for you</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// All valid class declarations</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">Customer</span>
+<span class="c1">// a default constructor is inferred</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">Contact</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">email</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span>
+<span class="c1">// builds a constructor</span>
+
+<span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">contact</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Contact</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sample@example.com&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">contact</span><span class="p">.</span><span class="na">email</span><span class="p">)</span>
+<span class="w">    </span><span class="n">contact</span><span class="p">.</span><span class="na">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;steve@website.com&quot;</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">contact</span><span class="p">.</span><span class="na">email</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<blockquote>
+<p>sample@example.com
+steve@website.com</p>
+</blockquote>
+<h4>Note: <code>new</code> keyword doesn't exist in Kotlin</h4>
+<h2>Inheritance</h2>
+<p>Classes and functions are <em>final</em> by default in Kotlin. If you want one to be able to be overriden, mark it with the <code>open</code> keyword.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">open</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Dog</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">open</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">sayHello</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;woof&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">Yorkshire</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Dog</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">sayHello</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;yip&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">dog</span><span class="p">:</span><span class="w"> </span><span class="n">Dog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Yorkshire</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h1>Control Flow</h1>
+<p>To be continued...</p>
+    </article>
+</section>
+                <hr>
+            </article>
+        </div>
+    </div> </body>
+
+</html>

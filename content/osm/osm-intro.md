@@ -34,7 +34,37 @@ Once you've made an account, the easiest way to edit the map is right on [openst
 
 ### Data Representations on the Map
 
-Everything in OSM is represented as either a point, line, or area. Although, you are more likely to hear points referred to as nodes, and lines or areas referred to as ways. These types map well onto nearly anything. Linear things, such as roads, paths, or fences, are drawn as lines. Buildings, land use, or bodies of water are drawn as areas. Very small things, such as street lamps or bus stop signs, or things where a single location is better, such as individual shops inside a single building, are drawn as points.
+I once saw the different ways to understand how data is represented compared to the iceberg meme, which I found very appropriate. Depending on how involved and deep into it you get, there are different things to understand.
+
+#### Level 1: The iD Tutorial
+
+The previously mentioned tutorial for editting built in to [openstreetmap.org](openstreetmap.org) will introduce you to the 3 types of points, lines, and areas. Although, you are more likely to hear points referred to as nodes, and lines referred to as ways. These types map well onto nearly anything. Linear things, such as roads, paths, or fences, are drawn as lines. Buildings, land use, or bodies of water are drawn as areas. Very small things, such as street lamps or bus stop signs, or things where a single location is better, such as individual shops inside a single building, are drawn as points.
+
+#### Level 2: JOSM Types
+
+If you spend more time with OSM data, you will learn of one more type: relations. These are used for things where a single point, line, or area cannot be accurately represent it, such as a building with a hole, requiring a line for the outside and the inside. Alternatively, relations are used for things that require multiple types, such as a bus route that holds the ways the bus drives down, and the points for the stops. Finally, relations are also used for very large things for when using a single line would be a cumbersome amount of data, such as a state boundary.
+
+It also will not take long to find that an area is just a way where the first and last node are the same.
+
+#### Level 3: Lists
+
+More just as an interesting point of consideration, you may realize that the only real data type is a list, since:
+
+- A relation is a list of ways and nodes
+- A way is a list of nodes
+- A node is a list of coordinates
+
+## The Wiki
+
+Before moving on to other things, there is another website that is absolutely essential to bring up: [wiki.openstreetmap.org](wiki.openstreetmap.org). The wiki is a great point of reference for nearly anything OSM related. It's the best place to find the definition of a tag, or to find the right tag for something you haven't encountered before. (Make sure you pay attention to the difference between a topic page and a tag's page, like [Highways](https://wiki.openstreetmap.org/wiki/Highways) vs. the [highway=](https://wiki.openstreetmap.org/wiki/Key:highway)) There's also pages for different regions used to share projects in an area, like [Utah's page](https://wiki.openstreetmap.org/wiki/Utah) where we have links to the waiver for using our state's datasets and the subpage on our current strategy for handling our unusual address system.
+
+The wiki is also home to many collections of other things, such as:
+- Proposals for new standardized tags [link](https://wiki.openstreetmap.org/wiki/Category:Proposed_features)
+- OSM-based services [link](https://wiki.openstreetmap.org/wiki/List_of_OSM-based_services)
+- Android apps for viewing and editing the map [link](https://wiki.openstreetmap.org/wiki/Android)
+- and more!
+
+> Note that different translations on the wiki will have notes on differences on local uses for specific tags
 
 ## Editing the Map, Part 2
 
@@ -48,3 +78,14 @@ The iD editor is really great, but you can only do so much with it. Many other e
 **Mobile**:
 
 - StreetComplete (Android only), an app which breaks down missing information into easy to answer 'quests' that ask simple questions like 'How many lanes does this road have?' or 'What are the opening hours of this business?'
+
+## Things that were covered in the workshop TODO
+
+- OSMF and OSMUS
+- osmcha.org
+- rapid
+- streetcomplete + everydoor
+- osmand + organic map
+- communication channels
+- imports + exports
+

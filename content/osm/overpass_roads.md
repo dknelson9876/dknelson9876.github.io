@@ -10,21 +10,24 @@ Summary: A collection of overpass turbo queries for reviewing roads in Utah
 ```js
 
 [out:json][timeout:25];
-// [ ] Salt Lake City
+// [x] Salt Lake City
 // [x] Magna Township
-// [ ] West Valley
-//area[wikidata=Q52465]->.a;
+// [x] West Valley
 // [x] South Salt Lake
-// [ ] Millcreek
-area[wikidata=Q1829357]->.a;
+// [x] Millcreek
 // [ ] Holladay
+//area[wikidata=Q482520]->.a;
 // [ ] Murray
+area[wikidata=Q482822]->.a;
 // [x] Taylorsville
 // [ ] Kearns
+//area[wikidata=Q3306750]->.a;
 // [ ] West Jordan
 //area[wikidata=Q52466]->.a;
 // [ ] Midvale
+//area[wikidata=Q482518]->.a;
 // [ ] Cottonwood Heights
+//area[wikidata=Q482523]->.a;
 // [ ] Sandy ( + White City, Granite)
 // [ ] South Jordan
 // [ ] Herriman
@@ -36,6 +39,7 @@ area[wikidata=Q1829357]->.a;
 //area[wikidata=Q52475]->.a;  //Taylorsville
 //area[wikidata=Q482869]->.a; //SSL
 //area[wikidata=Q255187]->.a; //Manga
+//area[wikidata=Q52465]->.a; // WVC
 
 //-------------------------
 // Salt Lake County
@@ -48,19 +52,17 @@ area[wikidata=Q1829357]->.a;
 //area[wikidata=Q26689]->.a;
 
 // Badly named roads
-(
-way["highway"~"primary$|secondary$|tertiary$|unclassified|residential"]["name:prefix"!~"North|South|East|West"](area.a);
-way["highway"~"primary$|secondary$|tertiary$|unclassified|residential|service"]["tiger:cfcc"](area.a);
-way["highway"~"primary$|secondary$|tertiary$|unclassified|residential|service"]["tiger:reviewed"="no"](area.a);
-);
-
-// Unreviewed roads
 //(
-//way["tiger:reviewed"="no"](area.a);
-//way["tiger:cfcc"](area.a);
-//area[wikidata=Q484577]({{bbox}});
+//way["highway"~"primary$|secondary$|tertiary$|unclassified|residential"]["name:prefix"!~"North|South|East|West"](area.a);
+//way["highway"~"primary$|secondary$|tertiary$|unclassified|residential|service"]["tiger:cfcc"](area.a);
+//way["highway"~"primary$|secondary$|tertiary$|unclassified|residential|service"]["tiger:reviewed"="no"](area.a);
 //);
 
-out geom;
+// Unreviewed roads
+(
+way[highway]["tiger:reviewed"="no"](area.a);
+//way[highway]["tiger:cfcc"](area.a);
+);
 
+out geom;
 ```

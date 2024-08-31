@@ -1,7 +1,7 @@
 ---
 Title: Overpass Queries for Roads in SLCo
 Date: 2023-11-27
-Modified: 2024-03-28
+Modified: 2024-08-31
 Tags: osm, overpass-turbo
 slug: overpass-utah-roads
 Summary: A collection of overpass turbo queries for reviewing roads in Utah
@@ -15,13 +15,10 @@ Summary: A collection of overpass turbo queries for reviewing roads in Utah
 // [x] West Valley
 // [x] South Salt Lake
 // [x] Millcreek
-// [ ] Holladay
-//area[wikidata=Q482520]->.a;
-// [ ] Murray
-area[wikidata=Q482822]->.a;
+// [x] Holladay
+// [x] Murray
 // [x] Taylorsville
-// [ ] Kearns
-//area[wikidata=Q3306750]->.a;
+// [x] Kearns
 // [ ] West Jordan
 //area[wikidata=Q52466]->.a;
 // [ ] Midvale
@@ -34,12 +31,6 @@ area[wikidata=Q482822]->.a;
 // [ ] Riverton
 // [ ] Draper
 // [ ] Bluffdale
-
-
-//area[wikidata=Q52475]->.a;  //Taylorsville
-//area[wikidata=Q482869]->.a; //SSL
-//area[wikidata=Q255187]->.a; //Manga
-//area[wikidata=Q52465]->.a; // WVC
 
 //-------------------------
 // Salt Lake County

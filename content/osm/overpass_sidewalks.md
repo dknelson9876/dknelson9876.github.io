@@ -27,13 +27,26 @@ style:
     - type: line
       filter:
         - any
+        - [ all, 
+            [ in, 'highway', primary, secondary, tertiary, residential, unclassified ],
+            ['!has', 'sidewalk'],
+            ['!has', 'sidewalk:left'],
+            ['!has', 'sidewalk:right'],
+            ['!has', 'sidewalk:both']
+          ]
+      paint: &paint
+        line-width: 3
+        line-color: magenta
+    - type: line
+      filter:
+        - any
         - [ ==, [ get, 'sidewalk' ], separate ]
         - [ ==, [ get, 'sidewalk:left' ], separate ]
         - [ ==, [ get, 'sidewalk:right' ], separate ]
         - [ ==, [ get, 'sidewalk:both' ], separate ]
       paint: &paint
-        line-width: 5
-        line-color: "red"
+        line-width: 1
+        line-color: "cyan"
     - type: line
       filter:
         - any
@@ -53,7 +66,7 @@ style:
         - [ ==, [ get, 'sidewalk:both' ], no ]
       paint:
         <<: *paint
-        line-color: "yellow"
+        line-color: "red"
     - type: line
       filter:
         - any
@@ -62,8 +75,8 @@ style:
         - [ ==, [ get, 'cycleway:right' ], separate ]
         - [ ==, [ get, 'cycleway:both' ], separate ]
       paint: &paint
-        line-width: 5
-        line-color: "magenta"
+        line-width: 1
+        line-color: "yellow"
     - type: line
       filter:
         - any
@@ -96,7 +109,7 @@ style:
         - any
         - [ ==, [ get, 'highway' ], cycleway ]
       paint:
-        line-width: 2
+        line-width: 1
         line-color: "cyan"
 ---
 [bbox:{{bbox}}];
@@ -105,6 +118,7 @@ style:
   way[~"cycleway"~"separate|yes|no"];
   way["footway"="sidewalk"];
   way["highway"="cycleway"];
+  way["highway"~"primary$|secondary$|tertiary$|unclassified|residential"];
 );
 out geom;
 ```

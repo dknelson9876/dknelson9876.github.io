@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ModelSim Cheatsheet - dknelsonWiki</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Fira+Code:wght@500|Fira+Sans+Condensed|Cantarell|VT323&display=swap"
+        rel="stylesheet">
+
+    <link type="text/css" href="/theme/css/sphenodon.css" rel="stylesheet">
+    <link type="text/css" href="/theme/css/pygments.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+
+
+
+
+<meta name="tags" content="verilog" />
+<meta name="tags" content="modelsim" />
+
+</head>
+
+<body>
+    <div id="layout" class="pure-g">
+
+        <div class="sidebar pure-u-1 pure-u-md-5-24">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>                </div>
+                <div class="sidebar-content">
+                    <div class="toc"></div>
+                </div>
+                <div id="footer"><small>Powered by <a href="http://getpelican.com/">Pelican</a></small></div>
+            </nav>
+        </div>
+
+        <nav class="phone-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>        </nav>
+
+        <div class="content pure-u-1 pure-u-md-4-5">
+            <article>
+<section id="content" class="body">
+    <div class="marginnote">
+        <hr>
+        <div class="article-information">
+            <div class="article-information-heading uppercase">Published</div>
+            <time class="published" datetime="2023-07-02T00:00:00-06:00">
+                Sun 02 July 2023
+            </time>
+            <div class="category">
+                Category: <a href="/categories#verilog-ref">verilog</a>
+            </div>
+            <div class="tags">
+                Tags:
+                <a href="/tags#verilog-ref">verilog</a>
+                <a href="/tags#modelsim-ref">modelsim</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <header>
+        <h1 class="entry-title">
+            <a href="/modelsim-cheatsheet.html" rel="bookmark"
+                title="Permalink to ModelSim Cheatsheet">ModelSim Cheatsheet</a>
+        </h1>
+    </header>
+    <article class="article-content">
+        <p>In my search to learn how to use modelsim as a standalone program for my senior project (as opposed to being bundled into Quartus, as I was taught in a previous university course), I came across a random old pdf made by Mentor, that helped me put together the following commands:</p>
+<h2>Commands run by the GUI</h2>
+<ul>
+<li>Generating the project:<ul>
+<li><code>vlib work</code></li>
+<li><code>vmap work work</code></li>
+</ul>
+</li>
+<li>Compile verilog files:<ul>
+<li><code>vlog -reportprogress 300 -work work [file]</code></li>
+</ul>
+</li>
+<li>Load the simulation:<ul>
+<li><code>vsim work.test_counter</code></li>
+</ul>
+</li>
+<li>Add test signals to the wave window:<ul>
+<li><code>add wave -position insertpoint sim:/test_counter/*</code></li>
+</ul>
+</li>
+<li>Start the sim:<ul>
+<li><code>run</code> (for the default time)</li>
+<li><code>run 500</code> (for 500 ns)</li>
+<li><code>run -all</code> (until stopped)</li>
+</ul>
+</li>
+</ul>
+    </article>
+</section>
+                <hr>
+            </article>
+        </div>
+    </div> </body>
+
+</html>

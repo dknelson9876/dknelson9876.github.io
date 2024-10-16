@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Flutter personal Reference - dknelsonWiki</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Fira+Code:wght@500|Fira+Sans+Condensed|Cantarell|VT323&display=swap"
+        rel="stylesheet">
+
+    <link type="text/css" href="/theme/css/sphenodon.css" rel="stylesheet">
+    <link type="text/css" href="/theme/css/pygments.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+
+
+
+
+<meta name="tags" content="flutter" />
+
+</head>
+
+<body>
+    <div id="layout" class="pure-g">
+
+        <div class="sidebar pure-u-1 pure-u-md-5-24">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>                </div>
+                <div class="sidebar-content">
+                    <div class="toc"></div>
+                </div>
+                <div id="footer"><small>Powered by <a href="http://getpelican.com/">Pelican</a></small></div>
+            </nav>
+        </div>
+
+        <nav class="phone-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>        </nav>
+
+        <div class="content pure-u-1 pure-u-md-4-5">
+            <article>
+<section id="content" class="body">
+    <div class="marginnote">
+        <hr>
+        <div class="article-information">
+            <div class="article-information-heading uppercase">Published</div>
+            <time class="published" datetime="2022-02-27T00:00:00-07:00">
+                Sun 27 February 2022
+            </time>
+            <div class="category">
+                Category: <a href="/categories#flutter-ref">flutter</a>
+            </div>
+            <div class="tags">
+                Tags:
+                <a href="/tags#flutter-ref">flutter</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <header>
+        <h1 class="entry-title">
+            <a href="/flutter-personal-reference.html" rel="bookmark"
+                title="Permalink to Flutter personal Reference">Flutter personal Reference</a>
+        </h1>
+    </header>
+    <article class="article-content">
+        <h1>Flutter personal Reference</h1>
+<h2>One and done packages</h2>
+<ul>
+<li>IntroductionScreen</li>
+<li>flutter_native_splashscreen</li>
+<li>AnimatedIcon</li>
+<li>InteractiveViewer (for pinch/zoom)</li>
+</ul>
+<h2>Operators</h2>
+<ul>
+<li><code>...</code> is the 'spread operator'</li>
+</ul>
+<h2>Converting to a Provider</h2>
+<p>Converting to Provider instead of custom InheritedWidget:</p>
+<ul>
+<li>I care about providing the signed in user and the list of recipes, and the isLoading bool</li>
+<li>I need to be able to notify anything about the user signing out</li>
+<li>I need to be able to notify about a recipe being uploaded</li>
+<li>
+<p>I need to be able to notify about a recipe being favorited/unfavorited</p>
+</li>
+<li>
+<p>A class needs to extends ChangeNotifier to be able to call notifyListeners()</p>
+</li>
+<li>ChangeNotifierProvider goes above the widgets that need access to it, but no higher than necessary (so app, I think)</li>
+<li>ChangeNotifierProvider takes a builder for the model (the thing that extends ChangeNotifier [I think this will end up being new recipes list model?])</li>
+<li>Use MultiProvider to have multiple Providers (I think I need one for user and one for recipe)</li>
+<li>We use a Consumer inside the widget to gain access to the model. The Consumer uses a builder to rebuild the widget according to the provider</li>
+<li>The consumer's builder gives the (context, ChangeNotifier[Model], </li>
+<li>
+<p>Good practice to put the Consumer as deep as possible</p>
+</li>
+<li>
+<p>If you need access to the model, but not the data inside it, use Provider.of&lt;&gt;</p>
+</li>
+</ul>
+    </article>
+</section>
+                <hr>
+            </article>
+        </div>
+    </div> </body>
+
+</html>

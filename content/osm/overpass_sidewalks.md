@@ -40,7 +40,6 @@ style:
     - type: line
       filter:
         - any
-        - [ ==, [ get, 'sidewalk' ], separate ]
         - [ ==, [ get, 'sidewalk:left' ], separate ]
         - [ ==, [ get, 'sidewalk:right' ], separate ]
         - [ ==, [ get, 'sidewalk:both' ], separate ]
@@ -50,13 +49,29 @@ style:
     - type: line
       filter:
         - any
-        - [ ==, [ get, 'sidewalk' ], yes ]
+        - [ ==, [get, 'sidewalk' ], separate ]
+      paint:
+        <<: *paint
+        line-width: 3
+        line-dasharray: [1, 1]
+    - type: line
+      filter:
+        - any
         - [ ==, [ get, 'sidewalk:left' ], yes ]
         - [ ==, [ get, 'sidewalk:right' ], yes ]
         - [ ==, [ get, 'sidewalk:both' ], yes ]
+      paint: &paint
+        line-width: 1
+        line-color: "orange"
+    - type: line
+      filter:
+        - any
+        - [ ==, [get, 'sidewalk' ], yes ]
+        - [ ==, [get, 'sidewalk' ], both ]
       paint:
         <<: *paint
-        line-color: "orange"
+        line-width: 3
+        line-dasharray: [1, 1]
     - type: line
       filter:
         - any
@@ -64,39 +79,17 @@ style:
         - [ ==, [ get, 'sidewalk:left' ], no ]
         - [ ==, [ get, 'sidewalk:right' ], no ]
         - [ ==, [ get, 'sidewalk:both' ], no ]
-      paint:
-        <<: *paint
+      paint: &paint
+        line-width: 1
         line-color: "red"
     - type: line
       filter:
         - any
-        - [ ==, [ get, 'cycleway' ], separate ]
-        - [ ==, [ get, 'cycleway:left' ], separate ]
-        - [ ==, [ get, 'cycleway:right' ], separate ]
-        - [ ==, [ get, 'cycleway:both' ], separate ]
-      paint: &paint
-        line-width: 1
-        line-color: "yellow"
-    - type: line
-      filter:
-        - any
-        - [ ==, [ get, 'cycleway' ], yes ]
-        - [ ==, [ get, 'cycleway:left' ], yes ]
-        - [ ==, [ get, 'cycleway:right' ], yes ]
-        - [ ==, [ get, 'cycleway:both' ], yes ]
+        - [ ==, [ get, 'sidewalk' ], no ]
       paint:
         <<: *paint
-        line-color: "purple"
-    - type: line
-      filter:
-        - any
-        - [ ==, [ get, 'cycleway' ], no ]
-        - [ ==, [ get, 'cycleway:left' ], no ]
-        - [ ==, [ get, 'cycleway:right' ], no ]
-        - [ ==, [ get, 'cycleway:both' ], no ]
-      paint:
-        <<: *paint
-        line-color: "blue"
+        line-width: 3
+        line-dasharray: [1, 1]
     - type: line
       filter:
         - any
@@ -104,21 +97,13 @@ style:
       paint:
         line-width: 1
         line-color: "green"
-    - type: line
-      filter:
-        - any
-        - [ ==, [ get, 'highway' ], cycleway ]
-      paint:
-        line-width: 1
-        line-color: "cyan"
 ---
 [bbox:{{bbox}}];
 (
   way[~"sidewalk"~"separate|yes|no"];
-  way[~"cycleway"~"separate|yes|no"];
   way["footway"="sidewalk"];
-  way["highway"="cycleway"];
   way["highway"~"primary$|secondary$|tertiary$|unclassified|residential"];
 );
 out geom;
+
 ```

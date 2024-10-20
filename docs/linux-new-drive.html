@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Partitioning and Formatting New Drives in Linux - dknelsonWiki</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Fira+Code:wght@500|Fira+Sans+Condensed|Cantarell|VT323&display=swap"
+        rel="stylesheet">
+
+    <link type="text/css" href="/theme/css/sphenodon.css" rel="stylesheet">
+    <link type="text/css" href="/theme/css/pygments.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+
+
+
+
+<meta name="tags" content="linux" />
+<meta name="tags" content="storage" />
+
+</head>
+
+<body>
+    <div id="layout" class="pure-g">
+
+        <div class="sidebar pure-u-1 pure-u-md-5-24">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>                </div>
+                <div class="sidebar-content">
+                    <div class="toc"></div>
+                </div>
+                <div id="footer"><small>Powered by <a href="http://getpelican.com/">Pelican</a></small></div>
+            </nav>
+        </div>
+
+        <nav class="phone-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>        </nav>
+
+        <div class="content pure-u-1 pure-u-md-4-5">
+            <article>
+<section id="content" class="body">
+    <div class="marginnote">
+        <hr>
+        <div class="article-information">
+            <div class="article-information-heading uppercase">Published</div>
+            <time class="published" datetime="2023-12-29T00:00:00-07:00">
+                Fri 29 December 2023
+            </time>
+            <div class="category">
+                Category: <a href="/categories#linux-ref">linux</a>
+            </div>
+            <div class="tags">
+                Tags:
+                <a href="/tags#linux-ref">linux</a>
+                <a href="/tags#storage-ref">storage</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <header>
+        <h1 class="entry-title">
+            <a href="/linux-new-drive.html" rel="bookmark"
+                title="Permalink to Partitioning and Formatting New Drives in Linux">Partitioning and Formatting New Drives in Linux</a>
+        </h1>
+    </header>
+    <article class="article-content">
+        <h2>Step 1: Create a Partition</h2>
+<p>Before the drive can be used, you need a partition on the disk. This is done using <code>fdisk</code>. On my system, I started by using <code>lsblk</code> to find the device for my new drive. It was easy to see which drive it was because it was the only disk without any partitions, which for me happened to be <code>/dev/sdc</code>. So, we start <code>fdisk</code> with the command</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>fdisk<span class="w"> </span>/dev/sdc
+</code></pre></div>
+
+<p><code>fdisk</code> uses single letters for each command, and does a lot more than we need right now. We type </p>
+<div class="highlight"><pre><span></span><code>n
+</code></pre></div>
+
+<p>To start making a new partition. We then type</p>
+<div class="highlight"><pre><span></span><code>p
+</code></pre></div>
+
+<p>To indicate that this is a primary partition. We can then choose the partition number and the size of the partition. Since this is the only partition I want on this disk, I just hit enter 3 times to get the output:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Partition</span><span class="w"> </span><span class="k">type</span>
+<span class="w">   </span><span class="nx">p</span><span class="w">   </span><span class="nx">primary</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="nx">primary</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nx">extended</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="nx">free</span><span class="p">)</span>
+<span class="w">   </span><span class="nx">e</span><span class="w">   </span><span class="nx">extended</span><span class="w"> </span><span class="p">(</span><span class="nx">container</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">logical</span><span class="w"> </span><span class="nx">partitions</span><span class="p">)</span>
+<span class="nx">Select</span><span class="w"> </span><span class="p">(</span><span class="k">default</span><span class="w"> </span><span class="nx">p</span><span class="p">):</span><span class="w"> </span><span class="nx">p</span>
+<span class="nx">Partition</span><span class="w"> </span><span class="nx">number</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="mi">1</span><span class="p">):</span>
+<span class="nx">First</span><span class="w"> </span><span class="nx">sector</span><span class="w"> </span><span class="p">(</span><span class="mi">2048</span><span class="o">-</span><span class="mi">3907029167</span><span class="p">,</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="mi">2048</span><span class="p">):</span>
+<span class="nx">Last</span><span class="w"> </span><span class="nx">sector</span><span class="p">,</span><span class="w"> </span><span class="o">+/-</span><span class="nx">sectors</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="o">+/-</span><span class="nx">size</span><span class="p">{</span><span class="nx">K</span><span class="p">,</span><span class="nx">M</span><span class="p">,</span><span class="nx">G</span><span class="p">,</span><span class="nx">T</span><span class="p">,</span><span class="nx">P</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="mi">2048</span><span class="o">-</span><span class="mi">3907029167</span><span class="p">,</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="mi">3907029167</span><span class="p">):</span>
+
+<span class="nx">Created</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">new</span><span class="w"> </span><span class="nx">partition</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Linux</span><span class="err">&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">size</span><span class="w"> </span><span class="m m-Double">1.8</span><span class="w"> </span><span class="nx">TiB</span><span class="p">.</span>
+</code></pre></div>
+
+<p>If you were doing something different, you could use the <code>t</code> command here to change the partition type, but for my purposes the default type of 'Linux' is fine. We finish using <code>fdisk</code> by writing our new partition data with</p>
+<div class="highlight"><pre><span></span><code>w
+</code></pre></div>
+
+<p>Now if I use <code>lsblk</code> again I can see a new partition <code>/dev/sdc1</code> that takes up all of <code>/dev/sdc</code>.</p>
+<h2>Step 2: Formatting the New Partition</h2>
+<p>Before we can use the new partition, we have to create the filesystem on it, using <code>mkfs</code>. For my purposes, ext4 will do. (From what I can tell, the only other common one you might want to use is NTFS, if you want Windows to also be able to read this drive)</p>
+<div class="highlight"><pre><span></span><code>sudo mkfs.ext4 /dev/sdc1
+</code></pre></div>
+
+<h2>Step 3: Mounting the New Partition</h2>
+<p>The last thing we have to do is actually mount our new filesystem somewhere we can use it. A common place for this is to mount under <code>/mnt</code>, which is also what I have already used on my system. I'm going to call my new drive <code>/mnt/black</code>, after what kind of drive it is. Thus the command is</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mount<span class="w"> </span>/dev/sdc1<span class="w"> </span>/mnt/black
+</code></pre></div>
+
+<p>However, using <code>mount</code> is not permanent and would need to be run again after rebooting. To mount it automatically on boot, we need to list it in the special file <code>/etc/fstab</code>, or the file system table. To reliably identify the partition even after hardware changes, we can use the UUID, which we can retrieve using</p>
+<div class="highlight"><pre><span></span><code>lsblk -f
+</code></pre></div>
+
+<p>Whose output included the line for this partition as:</p>
+<div class="highlight"><pre><span></span><code>sdc
+└─sdc1
+     ext4   1.0         598cb0f9-e0dc-4094-b30e-657c5112d6c7      1.7T     0% /mnt/black
+</code></pre></div>
+
+<p>Therefore, to the end of <code>/etc/fstab</code> we add the line:</p>
+<div class="highlight"><pre><span></span><code>UUID=598cb0f9-e0dc-4094-b30e-657c5112d6c7   /mnt/black  ext4    defaults    0 1
+</code></pre></div>
+    </article>
+</section>
+                <hr>
+            </article>
+        </div>
+    </div> </body>
+
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Introduction to OpenStreetMap - dknelsonWiki</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Fira+Code:wght@500|Fira+Sans+Condensed|Cantarell|VT323&display=swap"
+        rel="stylesheet">
+
+    <link type="text/css" href="/theme/css/sphenodon.css" rel="stylesheet">
+    <link type="text/css" href="/theme/css/pygments.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+
+
+
+
+<meta name="tags" content="osm" />
+
+</head>
+
+<body>
+    <div id="layout" class="pure-g">
+
+        <div class="sidebar pure-u-1 pure-u-md-5-24">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>                </div>
+                <div class="sidebar-content">
+                    <div class="toc"></div>
+                </div>
+                <div id="footer"><small>Powered by <a href="http://getpelican.com/">Pelican</a></small></div>
+            </nav>
+        </div>
+
+        <nav class="phone-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>        </nav>
+
+        <div class="content pure-u-1 pure-u-md-4-5">
+            <article>
+<section id="content" class="body">
+    <div class="marginnote">
+        <hr>
+        <div class="article-information">
+            <div class="article-information-heading uppercase">Published</div>
+            <time class="published" datetime="2024-06-06T00:00:00-06:00">
+                Thu 06 June 2024
+            </time>
+            <div class="category">
+                Category: <a href="/categories#osm-ref">osm</a>
+            </div>
+            <div class="tags">
+                Tags:
+                <a href="/tags#osm-ref">osm</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <header>
+        <h1 class="entry-title">
+            <a href="/osm-intro.html" rel="bookmark"
+                title="Permalink to Introduction to OpenStreetMap">Introduction to OpenStreetMap</a>
+        </h1>
+    </header>
+    <article class="article-content">
+        <!-- "Would like to first get an overview of the data, the tools, the people, and the challenges of OSM." -->
+<!-- "Here's iD, here's how to sign up" -->
+
+<h2>The Data: What's on the Map?</h2>
+<p>Anything on the ground! According to <a href="https://taginfo.geofabrik.de/north-america:us/keys/building">taginfo</a>, as of June 2024 in just the US there are 65 million buildings and 49 million highways, which are likely the most prominent things on the map. There's also 28 thousand playgrounds, 100 thousand benches, and almost 3 million individual trees. It's a map of the world, so a lot of things fit on the map. The real question is how detailed you want to get.</p>
+<h2>Viewing the Map</h2>
+<p>At it's core, OSM is really a database, not a map. You may notice some things that already exist on the map, but aren't actually visible on the map available at <a href="https://openstreetmap.org">openstreetmap.org</a>. That's because depending on your use case, there's not a one-style-fits-all way to draw the map. The default style on osm.org is carto, and it has its own repository <a href="https://github.com/gravitystorm/openstreetmap-carto">on Github</a>. There's a 'Layers' button on the right side to switch to other styles, like ones that highlight cycling infrastructure, or that display public transport routes.</p>
+<ul>
+<li>Salt Lake City with the default style on openstreetmap.org
+    <img alt="Salt Lake City on openstreetmap.org in the default (carto) style. One of the highlights of this style is using different colors for roads of different priority" src="/img/osm-carto-example.png"></li>
+<li>Or with the Cycle Map style
+    <img alt="Salt Lake City on openstreetmap.org in the Cycle Map style. Different kinds of cycle routes, such as separate paths, or paths next to car lanes, are highlight in different shades of blue." src="/img/osm-cycle-example.png"></li>
+<li>Or with the Transport Map style
+    <img alt="Salt Lake City on openstreetmap.org in the Transport Map style. Bus routes are drawn with red lines, and rails in dashed black, with everything else more faded than other styles." src="/img/osm-transport-example.png"></li>
+</ul>
+<h2>Editing the Map</h2>
+<p>One of the core things of OSM is that anyone can contribute to the map, whether you want to trace some buildings, add a missing business, or add details about what's available at your local park. The only requirement is that you make a free account on <a href="openstreetmap.org">openstreetmap.org</a></p>
+<p>Once you've made an account, the easiest way to edit the map is right on <a href="openstreetmap.org">openstreetmap.org</a>, with the iD editor that is built into the website. It has a great tutorial for new users that goes over everything you need to know about how data is represented, has tools for snapping things to 90 degrees or circles, and has presets for a lot of existing popular brands so that you don't even have to look up the right tags. The next section is a brief on how data is represented, so if you intend to follow the tutorial, don't worry about it.</p>
+<p><img alt="Screenshot of the iD editor built into openstreetmap.org, looking specifically at the intersection of State Street and 200 South in Salt Lake City, with State St selected" src="/img/id-example.png"></p>
+<h3>Data Representations on the Map</h3>
+<p>I once saw the different ways to understand how data is represented compared to the iceberg meme, which I found very appropriate. Depending on how involved and deep into it you get, there are different things to understand.</p>
+<h4>Level 1: The iD Tutorial</h4>
+<p>The previously mentioned tutorial for editting built in to <a href="openstreetmap.org">openstreetmap.org</a> will introduce you to the 3 types of points, lines, and areas. Although, you are more likely to hear points referred to as nodes, and lines referred to as ways. These types map well onto nearly anything. Linear things, such as roads, paths, or fences, are drawn as lines. Buildings, land use, or bodies of water are drawn as areas. Very small things, such as street lamps or bus stop signs, or things where a single location is better, such as individual shops inside a single building, are drawn as points.</p>
+<h4>Level 2: JOSM Types</h4>
+<p>If you spend more time with OSM data, you will learn of one more type: relations. These are used for things where a single point, line, or area cannot be accurately represent it, such as a building with a hole, requiring a line for the outside and the inside. Alternatively, relations are used for things that require multiple types, such as a bus route that holds the ways the bus drives down, and the points for the stops. Finally, relations are also used for very large things for when using a single line would be a cumbersome amount of data, such as a state boundary.</p>
+<p>It also will not take long to find that an area is just a way where the first and last node are the same.</p>
+<h4>Level 3: Lists</h4>
+<p>More just as an interesting point of consideration, you may realize that the only real data type is a list, since:</p>
+<ul>
+<li>A relation is a list of ways and nodes</li>
+<li>A way is a list of nodes</li>
+<li>A node is a list of coordinates</li>
+</ul>
+<h2>The Wiki</h2>
+<p>Before moving on to other things, there is another website that is absolutely essential to bring up: <a href="wiki.openstreetmap.org">wiki.openstreetmap.org</a>. The wiki is a great point of reference for nearly anything OSM related. It's the best place to find the definition of a tag, or to find the right tag for something you haven't encountered before. (Make sure you pay attention to the difference between a topic page and a tag's page, like <a href="https://wiki.openstreetmap.org/wiki/Highways">Highways</a> vs. the <a href="https://wiki.openstreetmap.org/wiki/Key:highway">highway=</a>) There's also pages for different regions used to share projects in an area, like <a href="https://wiki.openstreetmap.org/wiki/Utah">Utah's page</a> where we have links to the waiver for using our state's datasets and the subpage on our current strategy for handling our unusual address system.</p>
+<p>The wiki is also home to many collections of other things, such as:
+- Proposals for new standardized tags <a href="https://wiki.openstreetmap.org/wiki/Category:Proposed_features">link</a>
+- OSM-based services <a href="https://wiki.openstreetmap.org/wiki/List_of_OSM-based_services">link</a>
+- Android apps for viewing and editing the map <a href="https://wiki.openstreetmap.org/wiki/Android">link</a>
+- and more!</p>
+<blockquote>
+<p>Note that different translations on the wiki will have notes on differences on local uses for specific tags</p>
+</blockquote>
+<h2>Editing the Map, Part 2</h2>
+<p>The iD editor is really great, but you can only do so much with it. Many other editors exist, depending on what you want to do:</p>
+<p><strong>Desktop</strong>:</p>
+<ul>
+<li>Rapid, a fork of iD maintained by Meta. A web editor which integrates adding data from open sources, such as Microsoft's AI Buildings, along with better warnings and validations.</li>
+<li>JOSM, the Java OSM editor. A desktop program oriented at power users with many helpful plugins and styles that can improve your editing</li>
+</ul>
+<p><strong>Mobile</strong>:</p>
+<ul>
+<li>StreetComplete (Android only), an app which breaks down missing information into easy to answer 'quests' that ask simple questions like 'How many lanes does this road have?' or 'What are the opening hours of this business?'</li>
+</ul>
+<h2>Things that were covered in the workshop TODO</h2>
+<ul>
+<li>OSMF and OSMUS</li>
+<li>osmcha.org</li>
+<li>rapid</li>
+<li>streetcomplete + everydoor</li>
+<li>osmand + organic map</li>
+<li>communication channels</li>
+<li>imports + exports</li>
+</ul>
+    </article>
+</section>
+                <hr>
+            </article>
+        </div>
+    </div> </body>
+
+</html>

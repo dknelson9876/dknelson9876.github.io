@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Notes on a RISC-V ALU - dknelsonWiki</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Fira+Code:wght@500|Fira+Sans+Condensed|Cantarell|VT323&display=swap"
+        rel="stylesheet">
+
+    <link type="text/css" href="/theme/css/sphenodon.css" rel="stylesheet">
+    <link type="text/css" href="/theme/css/pygments.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+
+
+
+
+<meta name="tags" content="verilog" />
+<meta name="tags" content="risc-v" />
+
+</head>
+
+<body>
+    <div id="layout" class="pure-g">
+
+        <div class="sidebar pure-u-1 pure-u-md-5-24">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>                </div>
+                <div class="sidebar-content">
+                    <div class="toc"></div>
+                </div>
+                <div id="footer"><small>Powered by <a href="http://getpelican.com/">Pelican</a></small></div>
+            </nav>
+        </div>
+
+        <nav class="phone-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>        </nav>
+
+        <div class="content pure-u-1 pure-u-md-4-5">
+            <article>
+<section id="content" class="body">
+    <div class="marginnote">
+        <hr>
+        <div class="article-information">
+            <div class="article-information-heading uppercase">Published</div>
+            <time class="published" datetime="2023-07-03T00:00:00-06:00">
+                Mon 03 July 2023
+            </time>
+            <div class="category">
+                Category: <a href="/categories#risc-v-ref">risc-v</a>
+            </div>
+            <div class="tags">
+                Tags:
+                <a href="/tags#verilog-ref">verilog</a>
+                <a href="/tags#risc-v-ref">risc-v</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <header>
+        <h1 class="entry-title">
+            <a href="/riscv-alu.html" rel="bookmark"
+                title="Permalink to Notes on a RISC-V ALU">Notes on a RISC-V ALU</a>
+        </h1>
+    </header>
+    <article class="article-content">
+        <p>As part of my senior project to build a RISC-V processor, I've been assigned/chosen to design the ALU. That means I'm going to need to figure out what a RISC-V ALU needs. My main source here is the latest RISC-V Instruction Set Manual (Unprivileged ISA), <a href="https://riscv.org/wp-content/uploads/2019/12/riscv-spec-20191213.pdf">link</a>, as of writing that's version 20191213.</p>
+<hr>
+<p>The arithmetic related instructions that exist in RV32E (our chosen ISA subset) are:</p>
+<ul>
+<li><code>ADD</code>[I]/<code>SUB</code></li>
+<li><code>SLL</code>[I]/<code>SRL</code>[I]/<code>SRA</code>[I]</li>
+<li><code>AND</code>[I]/<code>OR</code>[I]/<code>XOR</code>[I]</li>
+<li><code>LUI</code>/<code>AUIPC</code>, <code>JAL</code>/<code>JALR</code></li>
+<li><code>BEQ</code>/<code>BNE</code>/<code>BLT</code>[U]/<code>BGT</code>[U]</li>
+</ul>
+<p>As I'm focusing on the ALU, the immediate variants are irrelevant right now. The first three bullets are instructions that it is the sole responsibility of the ALU to perform some math, so those are relatively. I can create an internal <code>aluOp</code> based on the func codes in the instruction, and simply perform the operation.</p>
+<p>The exception there is <code>SLT</code> and <code>SLTU</code>, as verilog will happily take care of unsigned comparisons, but we have to get a little more manual to perform a signed comparison using the MSb and the difference between the two values.</p>
+<blockquote>
+<p>Note: <code>rs1</code> is the left operator for arithmetic, which I'm also calling <code>A</code></p>
+</blockquote>
+    </article>
+</section>
+                <hr>
+            </article>
+        </div>
+    </div> </body>
+
+</html>

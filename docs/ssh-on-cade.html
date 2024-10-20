@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>SSH on CADE - dknelsonWiki</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Fira+Code:wght@500|Fira+Sans+Condensed|Cantarell|VT323&display=swap"
+        rel="stylesheet">
+
+    <link type="text/css" href="/theme/css/sphenodon.css" rel="stylesheet">
+    <link type="text/css" href="/theme/css/pygments.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+
+
+
+
+<meta name="tags" content="terminal" />
+<meta name="tags" content="ssh" />
+<meta name="tags" content="vscode" />
+
+</head>
+
+<body>
+    <div id="layout" class="pure-g">
+
+        <div class="sidebar pure-u-1 pure-u-md-5-24">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>                </div>
+                <div class="sidebar-content">
+                    <div class="toc"></div>
+                </div>
+                <div id="footer"><small>Powered by <a href="http://getpelican.com/">Pelican</a></small></div>
+            </nav>
+        </div>
+
+        <nav class="phone-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>        </nav>
+
+        <div class="content pure-u-1 pure-u-md-4-5">
+            <article>
+<section id="content" class="body">
+    <div class="marginnote">
+        <hr>
+        <div class="article-information">
+            <div class="article-information-heading uppercase">Published</div>
+            <time class="published" datetime="2022-11-04T00:00:00-06:00">
+                Fri 04 November 2022
+            </time>
+            <div class="category">
+                Category: <a href="/categories#terminal-ref">terminal</a>
+            </div>
+            <div class="tags">
+                Tags:
+                <a href="/tags#terminal-ref">terminal</a>
+                <a href="/tags#ssh-ref">ssh</a>
+                <a href="/tags#vscode-ref">vscode</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <header>
+        <h1 class="entry-title">
+            <a href="/ssh-on-cade.html" rel="bookmark"
+                title="Permalink to SSH on CADE">SSH on CADE</a>
+        </h1>
+    </header>
+    <article class="article-content">
+        <h2>SSH VScode integration</h2>
+<p>Me and probably others <em>dislike</em> terminal based editors. They have their advantages but for people who have used an IDE all their life it is not always ideal. Here's how to run VSCode so you don't have to use those.</p>
+<p>This guide is separated into two steps.
+1. Make your ssh keys and setup SSH into a CADE machine
+- This one above is kind of optional since its not <em>required</em> to make it work, it's just wildly inconvenient without it
+2. VSCode extension setup and remote dev install</p>
+<h3>1 SSH Keys</h3>
+<h5>Setup OpenSSH</h5>
+<ol>
+<li>Open the <strong>Settings</strong> panel, then click <strong>Apps</strong></li>
+<li>Under the <em>Apps and Features</em> heading, click <strong>Optional Features</strong></li>
+<li>Scroll down the list to see if <strong>OpenSSH Client</strong> is listed</li>
+<li>If it’s not, click the plus-sign next to <strong>Add a feature</strong></li>
+<li>Scroll through the list to find and select <strong>OpenSSH Client</strong></li>
+<li>Finally, click <strong>Install</strong></li>
+</ol>
+<h5>Common Instructions</h5>
+<ol>
+<li>Open up your terminal emulator (Powershell for Windows, Terminal for MacOS and Linux)</li>
+<li>Run <code>ssh-keygen</code></li>
+<li>If you already have an ssh key you can reuse that. To check if you have one,  see if you have a directory in your home directory called <code>.ssh</code> (<code>~/.ssh</code>) with a file called <code>id_xxx.pub</code> where <code>xxx</code> is an encryption method, commonly <code>rsa</code> or <code>ed25519</code></li>
+<li>When running this program you probably don't want to give your key a passphrase, since you don't want to have to entire a password every time we use it</li>
+<li>You can usually just press enter until the program completes</li>
+<li>Open up your newly generated ssh key pub file, which has the format <code>id_xxx.pub</code> from the <code>~/.ssh</code> folder. (See 2a for more info).</li>
+<li>Copy the line that appears. You'll need it for later. This is your <strong>public key</strong></li>
+<li>It should look <em>something</em> like this:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="n">ssh</span><span class="o">-</span><span class="n">ed25519</span><span class="w"> </span><span class="n">AAAAC3NzaC1lZDI1NTE5AAAAIMRSgiBte9Px92dZCj33fiA</span><span class="o">/</span><span class="n">HHpVHnD55</span><span class="o">/+</span><span class="n">Y0KB0W7fn</span><span class="w"> </span><span class="n">stefan</span><span class="p">.</span><span class="n">b</span><span class="p">.</span><span class="n">todorov</span><span class="nv">@gmail</span><span class="p">.</span><span class="n">com</span>
+</code></pre></div>
+
+<ol>
+<li>SSH into your CADE machine. This is done normally, but I'll give helpful links and example command</li>
+<li>Example command: <code>ssh uxxxxxx@lab1-3.eng.utah.edu</code></li>
+<li><a href="https://www.cade.utah.edu/faqs/which-machines-can-i-access-remotely/">Available target machines</a></li>
+<li>The number of the lab machine doesn't actually matter as all info is transferred between them all.</li>
+<li>Add your <strong>public key</strong> to the <code>~/.ssh/authorized_keys</code> file</li>
+<li>The directory <code>~/.ssh</code> may not exist and you may need to make it with <code>mkdir</code></li>
+<li>The file <code>authorized_keys</code> may not exist and you may need to make it</li>
+<li>I would recommend using <code>nano</code> to create the file if you don't like lots of terminal text editors. Exit with <code>CTRL+X</code> then <code>Y</code> then <code>ENTER</code></li>
+<li>Just paste the <strong>public key</strong> as is, if there's one already, add new line</li>
+<li>Exit everything!</li>
+</ol>
+<h3>2 VSCode setup</h3>
+<ol>
+<li>Open up VSCode</li>
+<li>Install these extensions</li>
+<li><code>Remote - SSH</code> <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">link</a></li>
+<li><code>Project Manager</code> <a href="https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager">link</a> <em>this one is optional but highly recommended</em></li>
+<li>Add a remote SSH Host by opening the command palette (<code>CTRL + P</code> or <code>COMMAND + P</code> then type <code>&gt;Add new SSH Host...</code>)</li>
+<li>Run the command labeled <code>Remote-SSH: Add new SSH Host...</code> (it will show up before you finish typing)</li>
+<li>Type in the <code>ssh</code> command above you used to connect to the CADE machine.</li>
+<li>Add to whatever config file you'd like, the first one is recommended.</li>
+<li>After you've set that up, use the command palette to run <code>Remote-SSH: Connect To Host...</code></li>
+<li>Connect to the machine you just added</li>
+<li>If it's your first machine connection it should be the first option</li>
+<li>Go to <code>File &gt; Open Folder</code> and open any folder, I prefer <code>~</code> (your home folder)</li>
+<li>Go to the Project Manager extension section on the left (looks like two folders)</li>
+<li>Hover over favorites and click the save icon to save the current place as a "Project"</li>
+</ol>
+<h3>You're done!</h3>
+<p>Seriously that's it. You can use the terminal inside VSCode to do whatever you need to like compiling.</p>
+<p>If you need to reconnect to CADE, you don't need to do steps 4-11 again, just go to the Project Manager extension section and click on the profile you just made!</p>
+<p>Again, if you have issues leave a discussion below and I will do my best to answer / update the guide.</p>
+    </article>
+</section>
+                <hr>
+            </article>
+        </div>
+    </div> </body>
+
+</html>

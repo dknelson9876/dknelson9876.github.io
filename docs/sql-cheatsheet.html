@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>SQL Cheatsheet - dknelsonWiki</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Fira+Code:wght@500|Fira+Sans+Condensed|Cantarell|VT323&display=swap"
+        rel="stylesheet">
+
+    <link type="text/css" href="/theme/css/sphenodon.css" rel="stylesheet">
+    <link type="text/css" href="/theme/css/pygments.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+
+
+
+
+<meta name="tags" content="sql" />
+
+</head>
+
+<body>
+    <div id="layout" class="pure-g">
+
+        <div class="sidebar pure-u-1 pure-u-md-5-24">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>                </div>
+                <div class="sidebar-content">
+                    <div class="toc"></div>
+                </div>
+                <div id="footer"><small>Powered by <a href="http://getpelican.com/">Pelican</a></small></div>
+            </nav>
+        </div>
+
+        <nav class="phone-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>        </nav>
+
+        <div class="content pure-u-1 pure-u-md-4-5">
+            <article>
+<section id="content" class="body">
+    <div class="marginnote">
+        <hr>
+        <div class="article-information">
+            <div class="article-information-heading uppercase">Published</div>
+            <time class="published" datetime="2024-03-28T00:00:00-06:00">
+                Thu 28 March 2024
+            </time>
+            <div class="category">
+                Category: <a href="/categories#sql-ref">sql</a>
+            </div>
+            <div class="tags">
+                Tags:
+                <a href="/tags#sql-ref">sql</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <header>
+        <h1 class="entry-title">
+            <a href="/sql-cheatsheet.html" rel="bookmark"
+                title="Permalink to SQL Cheatsheet">SQL Cheatsheet</a>
+        </h1>
+    </header>
+    <article class="article-content">
+        <h2>Commands</h2>
+<ul>
+<li><code>CREATE TABLE &lt;table_name&gt; (&lt;col_name&gt; &lt;col_type&gt;, ...);</code></li>
+<li><code>INSERT INTO &lt;table_name&gt; (col_name, ...) VALUES (col_value);</code><ul>
+<li>If supplying a value for every column, <code>(col_name, ...)</code> can be omitted</li>
+</ul>
+</li>
+<li><code>SELECT &lt;col_name&gt;, ... FROM &lt;table_name&gt;;</code></li>
+<li><code>ALTER TABLE &lt;table_name&gt; ...</code><ul>
+<li><code>... RENAME TO &lt;new_table_name&gt;;</code></li>
+<li><code>... RENAME COLUMN &lt;col_name&gt; TO &lt;new_col_name&gt;;</code></li>
+<li><code>... ADD COLUMN &lt;col_name&gt; &lt;col_type&gt;;</code></li>
+<li><code>... DROP COLUMN &lt;col_name&gt;;</code></li>
+</ul>
+</li>
+<li><code>DELETE FROM &lt;table_name&gt;;</code> :insert sirens:</li>
+<li><code>UPDATE &lt;table_name&gt; SET &lt;col_name&gt; = &lt;new_val&gt;, ...;</code></li>
+</ul>
+<h2>Clauses</h2>
+<ul>
+<li><code>WHERE</code>: for filtering<ul>
+<li><code>SELECT name FROM users WHERE age &gt; 18;</code></li>
+<li>Accepts <code>=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>IS NULL</code>, <code>IS NOT NULL</code></li>
+<li>Logical operators <code>AND</code> and <code>OR</code> can be used to combine filters</li>
+</ul>
+</li>
+<li><code>IN</code>: for filtering from a list<ul>
+<li><code>SELECT * FROM users WHERE country_code IN ("CA", "US", "MX");</code></li>
+</ul>
+</li>
+<li><code>LIKE</code>: for very simple string matching<ul>
+<li><code>%</code> stands for 0 or more characters</li>
+<li><code>_</code> stands for 1 character</li>
+<li><code>SELECT name FROM products WHERE name LIKE "%banana%";</code> (name contains "banana")</li>
+</ul>
+</li>
+<li><code>LIMIT</code>: puts a cap on the number of records returned<ul>
+<li><code>SELECT * FROM users WHERE country_code = "US" LIMIT 50;</code></li>
+</ul>
+</li>
+<li><code>AS</code>: for single time column renaming<ul>
+<li><code>SELECT employee_id AS id FROM employees;</code></li>
+<li>Useful when calculating new values in a query</li>
+</ul>
+</li>
+<li><code>IIF</code>: ternary function<ul>
+<li><code>SELECT IIF(quantity &lt; 10, "Low Stock", "In Stock") AS stock FROM inventory;</code></li>
+</ul>
+</li>
+<li><code>BETWEEN</code>: for checking ranges<ul>
+<li><code>SELECT * FROM users WHERE age BETWEEN 18 AND 65;</code></li>
+</ul>
+</li>
+<li><code>DISTINCT</code>: for removing duplicates in results<ul>
+<li><code>SELECT DISTINCT region FROM users;</code></li>
+</ul>
+</li>
+<li><code>ORDER BY</code>: for sorting records<ul>
+<li><code>SELECT * FROM users ORDER BY age;</code></li>
+<li>By default sorts by <code>ASC</code>, but can also specify <code>DESC</code></li>
+<li>Must come <strong>before</strong> <code>LIMIT</code></li>
+</ul>
+</li>
+<li><code>GROUP BY</code>: combines rows into records with matching values<ul>
+<li><code>SELECT user_id, sum(amount) FROM transactions GROUP BY user_id;</code></li>
+</ul>
+</li>
+<li><code>HAVING</code>: <code>WHERE</code> but for groups instead of individual records<ul>
+<li><code>SELECT sum(amount) AS balance FROM transactions GROUP BY user_id HAVING balance &gt; 20;</code></li>
+</ul>
+</li>
+</ul>
+<h2>Constraints</h2>
+<ul>
+<li><code>NOT NULL</code><ul>
+<li><code>CREATE TABLE users(id INTEGER PRIMARY KEY, name TEXT NOT NULL);</code></li>
+</ul>
+</li>
+<li><code>PRIMARY KEY</code> (implies <code>NOT NULL</code>)</li>
+<li><code>FOREIGN KEY</code> ties a column to values from another table<ul>
+<li><code>CREATE TABLE users(id PRIMARY KEY, country_code TEXT,
+  FOREIGN KEY (country_code) REFERENCES countries(code)</code></li>
+</ul>
+</li>
+</ul>
+<h2>SQLite Data Types</h2>
+<ul>
+<li><code>NULL</code></li>
+<li><code>INTEGER</code></li>
+<li><code>REAL</code> - as in numbers. AKA float</li>
+<li><code>TEXT</code> - aka strings</li>
+<li><code>BLOB</code> - <em>B</em>inary <em>L</em>arge <em>Ob</em>ject</li>
+<li><code>BOOLEAN</code> - Technically represented as 0/1, like C does</li>
+</ul>
+<h2>Aggregators</h2>
+<ul>
+<li><code>count</code>: returns an integer count of the number of results that were returned, instead of the actual results<ul>
+<li><code>SELECT count(*) FROM users;</code></li>
+</ul>
+</li>
+<li><code>sum</code>: returns an integer sum of the selected records<ul>
+<li><code>SELECT sum(amount) FROM transactions WHERE user_id=2;</code></li>
+</ul>
+</li>
+<li><code>max</code>: returns the single largest value from the selected records<ul>
+<li><code>SELECT max(amount) FROM transactions;</code></li>
+</ul>
+</li>
+<li><code>min</code>: returns the single smallest value from the selected records<ul>
+<li><code>SELECT min(amount) FROM transactions;</code></li>
+</ul>
+</li>
+<li><code>avg</code>: returns the average value from the selected records<ul>
+<li><code>SELECT avg(age) from users;</code></li>
+</ul>
+</li>
+<li><code>round(&lt;value&gt;, &lt;precision&gt;)</code>: round a value, where <code>&lt;precision&gt;</code> is the number of digits past the decimal point<ul>
+<li><code>SELECT round(avg(age)) from users;</code></li>
+</ul>
+</li>
+</ul>
+<h2>Subqueries</h2>
+<p>Insert queries into other queries by surrounding them with parentheses.</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">song_name</span><span class="p">,</span><span class="w"> </span><span class="n">artist_id</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">songs</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">artist_id</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">artists</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">artist_name</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;Rick%&#39;</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h2>Joins</h2>
+<ul>
+<li>Inner Join: Match each record from the first table with a record from the second table, but only the ones that have a match. This is also the default join.<ul>
+<li><code>SELECT * FROM users INNER JOIN countries ON users.country_code = countries.code;</code></li>
+</ul>
+</li>
+<li>Left Join: Match each record from the first table with a record from the second table, and return every record from the first table.</li>
+</ul>
+    </article>
+</section>
+                <hr>
+            </article>
+        </div>
+    </div> </body>
+
+</html>

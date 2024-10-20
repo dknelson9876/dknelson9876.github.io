@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Makefile Techniques - dknelsonWiki</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Fira+Code:wght@500|Fira+Sans+Condensed|Cantarell|VT323&display=swap"
+        rel="stylesheet">
+
+    <link type="text/css" href="/theme/css/sphenodon.css" rel="stylesheet">
+    <link type="text/css" href="/theme/css/pygments.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+
+
+
+
+<meta name="tags" content="c" />
+<meta name="tags" content="makefile" />
+
+</head>
+
+<body>
+    <div id="layout" class="pure-g">
+
+        <div class="sidebar pure-u-1 pure-u-md-5-24">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>                </div>
+                <div class="sidebar-content">
+                    <div class="toc"></div>
+                </div>
+                <div id="footer"><small>Powered by <a href="http://getpelican.com/">Pelican</a></small></div>
+            </nav>
+        </div>
+
+        <nav class="phone-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>        </nav>
+
+        <div class="content pure-u-1 pure-u-md-4-5">
+            <article>
+<section id="content" class="body">
+    <div class="marginnote">
+        <hr>
+        <div class="article-information">
+            <div class="article-information-heading uppercase">Published</div>
+            <time class="published" datetime="2023-12-06T00:00:00-07:00">
+                Wed 06 December 2023
+            </time>
+            <div class="category">
+                Category: <a href="/categories#c-ref">c</a>
+            </div>
+            <div class="tags">
+                Tags:
+                <a href="/tags#c-ref">c</a>
+                <a href="/tags#makefile-ref">makefile</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <header>
+        <h1 class="entry-title">
+            <a href="/makefile-cheatsheet.html" rel="bookmark"
+                title="Permalink to Makefile Techniques">Makefile Techniques</a>
+        </h1>
+    </header>
+    <article class="article-content">
+        <h3>Conditional Blocks (<a href="https://stackoverflow.com/questions/6269857/makefile-support-for-multiple-architectures-configurations">stackoverflow</a>)</h3>
+<div class="highlight"><pre><span></span><code><span class="cp">ifeq ($(TARGET), scmb)</span>
+<span class="w">  </span><span class="nv">CC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>gcc-riscv-eabi-none
+<span class="cp">else</span>
+<span class="w">  </span><span class="nv">CC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>gcc
+<span class="cp">endif</span>
+</code></pre></div>
+
+<p>In a style like you would expect from a scripting language, defining the variable inside the <code>if</code> doesn't prevent it from being accessible later. However, if you want to indent inside the <code>if</code>, make sure that it doesn't match the indentation used for commands inside a rule.</p>
+<h3>Automatically Build Header File Dependencies (<a href="https://stackoverflow.com/questions/2394609/makefile-header-dependencies">stackoverflow</a>)</h3>
+<div class="highlight"><pre><span></span><code><span class="nv">CXX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>clang++
+<span class="nv">CXX_FLAGS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-Wfatal-errors<span class="w"> </span>-Wall<span class="w"> </span>-Wextra<span class="w"> </span>-Wpedantic<span class="w"> </span>-Wconversion<span class="w"> </span>-Wshadow
+
+<span class="c"># Final binary</span>
+<span class="nv">BIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>mybin
+<span class="c"># Put all auto generated stuff to this build dir.</span>
+<span class="nv">BUILD_DIR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>./build
+
+<span class="c"># List of all .cpp source files.</span>
+<span class="nv">CPP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>main.cpp<span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>dir1/*.cpp<span class="k">)</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>dir2/*.cpp<span class="k">)</span>
+
+<span class="c"># All .o files go to build dir.</span>
+<span class="nv">OBJ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>CPP:%.cpp<span class="o">=</span><span class="k">$(</span>BUILD_DIR<span class="k">)</span>/%.o<span class="k">)</span>
+<span class="c"># Gcc/Clang will create these .d files containing dependencies.</span>
+<span class="nv">DEP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>OBJ:%.o<span class="o">=</span>%.d<span class="k">)</span>
+
+<span class="c"># Default target named after the binary.</span>
+<span class="nf">$(BIN) </span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">BUILD_DIR</span><span class="k">)</span>/<span class="k">$(</span><span class="nv">BIN</span><span class="k">)</span>
+
+<span class="c"># Actual target of the binary - depends on all .o files.</span>
+<span class="nf">$(BUILD_DIR)/$(BIN) </span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">OBJ</span><span class="k">)</span>
+<span class="c">    # Create build directories - same structure as sources.</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="k">$(</span>@D<span class="k">)</span>
+<span class="c">    # Just link all the object files.</span>
+<span class="w">    </span><span class="k">$(</span>CXX<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CXX_FLAGS<span class="k">)</span><span class="w"> </span>$^<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span>
+
+<span class="c"># Include all .d files</span>
+<span class="cp">-include $(DEP)</span>
+
+<span class="c"># Build target for every single object file.</span>
+<span class="c"># The potential dependency on header files is covered</span>
+<span class="c"># by calling `-include $(DEP)`.</span>
+<span class="nf">$(BUILD_DIR)/%.o </span><span class="o">:</span><span class="w"> </span>%.<span class="n">cpp</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="k">$(</span>@D<span class="k">)</span>
+<span class="c">    # The -MMD flags additionaly creates a .d file with</span>
+<span class="c">    # the same name as the .o file.</span>
+<span class="w">    </span><span class="k">$(</span>CXX<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CXX_FLAGS<span class="k">)</span><span class="w"> </span>-MMD<span class="w"> </span>-c<span class="w"> </span>$&lt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span>
+
+<span class="nf">.PHONY </span><span class="o">:</span><span class="w"> </span><span class="n">clean</span>
+<span class="nf">clean </span><span class="o">:</span>
+<span class="c">    # This should remove all generated files.</span>
+<span class="w">    </span>-rm<span class="w"> </span><span class="k">$(</span>BUILD_DIR<span class="k">)</span>/<span class="k">$(</span>BIN<span class="k">)</span><span class="w"> </span><span class="k">$(</span>OBJ<span class="k">)</span><span class="w"> </span><span class="k">$(</span>DEP<span class="k">)</span>
+</code></pre></div>
+
+<p>The important parts here are building the <code>DEP</code> list of <code>.d</code> files, and the <code>-MMD</code> flag to gcc in the rule for building <code>.o</code> files. This snippet also makes use of the <code>-p</code> flag to <code>mkdir</code> to not error on the directory already existing, but I prefer having a dedicated rule for <code>mkdir</code>, and having the other rules having the timeless dependency, like <code>%.o: %.c | $(BUILD_DIR)</code></p>
+    </article>
+</section>
+                <hr>
+            </article>
+        </div>
+    </div> </body>
+
+</html>

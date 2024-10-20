@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Overpass Queries for Roads in SLCo - dknelsonWiki</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Fira+Code:wght@500|Fira+Sans+Condensed|Cantarell|VT323&display=swap"
+        rel="stylesheet">
+
+    <link type="text/css" href="/theme/css/sphenodon.css" rel="stylesheet">
+    <link type="text/css" href="/theme/css/pygments.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+
+
+
+
+<meta name="tags" content="osm" />
+<meta name="tags" content="overpass-turbo" />
+
+</head>
+
+<body>
+    <div id="layout" class="pure-g">
+
+        <div class="sidebar pure-u-1 pure-u-md-5-24">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>                </div>
+                <div class="sidebar-content">
+                    <div class="toc"></div>
+                </div>
+                <div id="footer"><small>Powered by <a href="http://getpelican.com/">Pelican</a></small></div>
+            </nav>
+        </div>
+
+        <nav class="phone-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>        </nav>
+
+        <div class="content pure-u-1 pure-u-md-4-5">
+            <article>
+<section id="content" class="body">
+    <div class="marginnote">
+        <hr>
+        <div class="article-information">
+            <div class="article-information-heading uppercase">Published</div>
+            <time class="published" datetime="2023-11-27T00:00:00-07:00">
+                Mon 27 November 2023
+            </time>
+            <time class="modified" datetime="2024-08-31T00:00:00-06:00">
+                Sat 31 August 2024
+            </time>
+            <div class="category">
+                Category: <a href="/categories#osm-ref">osm</a>
+            </div>
+            <div class="tags">
+                Tags:
+                <a href="/tags#osm-ref">osm</a>
+                <a href="/tags#overpass-turbo-ref">overpass-turbo</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <header>
+        <h1 class="entry-title">
+            <a href="/overpass-utah-roads.html" rel="bookmark"
+                title="Permalink to Overpass Queries for Roads in SLCo">Overpass Queries for Roads in SLCo</a>
+        </h1>
+    </header>
+    <article class="article-content">
+        <div class="highlight"><pre><span></span><code><span class="p">[</span><span class="nx">out</span><span class="o">:</span><span class="nx">json</span><span class="p">][</span><span class="nx">timeout</span><span class="o">:</span><span class="mf">25</span><span class="p">];</span>
+<span class="c1">// [x] Salt Lake City</span>
+<span class="c1">// [x] Magna Township</span>
+<span class="c1">// [x] West Valley</span>
+<span class="c1">// [x] South Salt Lake</span>
+<span class="c1">// [x] Millcreek</span>
+<span class="c1">// [x] Holladay</span>
+<span class="c1">// [x] Murray</span>
+<span class="c1">// [x] Taylorsville</span>
+<span class="c1">// [x] Kearns</span>
+<span class="c1">// [x] West Jordan</span>
+<span class="c1">// [x] Midvale</span>
+<span class="c1">// [ ] Cottonwood Heights</span>
+<span class="nx">area</span><span class="p">[</span><span class="nx">wikidata</span><span class="o">=</span><span class="nx">Q482523</span><span class="p">]</span><span class="o">-&gt;</span><span class="p">.</span><span class="nx">a</span><span class="p">;</span>
+<span class="c1">// [ ] Sandy ( + White City, Granite) </span>
+<span class="c1">// [ ] South Jordan</span>
+<span class="c1">// [ ] Herriman</span>
+<span class="c1">// [ ] Riverton</span>
+<span class="c1">// [ ] Draper</span>
+<span class="c1">// [ ] Bluffdale</span>
+
+<span class="c1">// [ ] Copperton</span>
+<span class="c1">// [ ] Emigration Canyon </span>
+<span class="c1">// [ ] Cottonwood Canyons </span>
+<span class="c1">// [ ] GSL Marshes </span>
+
+<span class="c1">//-------------------------</span>
+<span class="c1">// Salt Lake County</span>
+<span class="c1">//area[wikidata=Q484556]-&gt;.a;</span>
+<span class="c1">// Garfield County, Utah</span>
+<span class="c1">//area[wikidata=Q26740]-&gt;.a;</span>
+<span class="c1">// Sanpete County</span>
+<span class="c1">//area[wikidata=Q484577]-&gt;.a;</span>
+<span class="c1">// Juab County</span>
+<span class="c1">//area[wikidata=Q26689]-&gt;.a;</span>
+
+<span class="c1">// Badly named roads</span>
+<span class="c1">//(</span>
+<span class="c1">//way[&quot;highway&quot;~&quot;primary$|secondary$|tertiary$|unclassified|residential&quot;][&quot;name:prefix&quot;!~&quot;North|South|East|West&quot;](area.a);</span>
+<span class="c1">//way[&quot;highway&quot;~&quot;primary$|secondary$|tertiary$|unclassified|residential|service&quot;][&quot;tiger:cfcc&quot;](area.a);</span>
+<span class="c1">//way[&quot;highway&quot;~&quot;primary$|secondary$|tertiary$|unclassified|residential|service&quot;][&quot;tiger:reviewed&quot;=&quot;no&quot;](area.a);</span>
+<span class="c1">//);</span>
+
+<span class="c1">// Unreviewed roads</span>
+<span class="p">(</span>
+<span class="nx">way</span><span class="p">[</span><span class="nx">highway</span><span class="p">][</span><span class="s2">&quot;tiger:reviewed&quot;</span><span class="o">=</span><span class="s2">&quot;no&quot;</span><span class="p">](</span><span class="nx">area</span><span class="p">.</span><span class="nx">a</span><span class="p">);</span>
+<span class="c1">//way[highway][&quot;tiger:cfcc&quot;](area.a);</span>
+<span class="p">);</span>
+
+<span class="nx">out</span><span class="w"> </span><span class="nx">geom</span><span class="p">;</span>
+</code></pre></div>
+    </article>
+</section>
+                <hr>
+            </article>
+        </div>
+    </div> </body>
+
+</html>

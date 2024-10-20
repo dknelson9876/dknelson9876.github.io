@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Overpass Queries for sidewalks - dknelsonWiki</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Fira+Code:wght@500|Fira+Sans+Condensed|Cantarell|VT323&display=swap"
+        rel="stylesheet">
+
+    <link type="text/css" href="/theme/css/sphenodon.css" rel="stylesheet">
+    <link type="text/css" href="/theme/css/pygments.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+
+
+
+
+<meta name="tags" content="osm" />
+<meta name="tags" content="overpass-turbo" />
+
+</head>
+
+<body>
+    <div id="layout" class="pure-g">
+
+        <div class="sidebar pure-u-1 pure-u-md-5-24">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>                </div>
+                <div class="sidebar-content">
+                    <div class="toc"></div>
+                </div>
+                <div id="footer"><small>Powered by <a href="http://getpelican.com/">Pelican</a></small></div>
+            </nav>
+        </div>
+
+        <nav class="phone-header">
+<div class="sitename"><a href="/">dknelsonWiki</a></div>
+<div><small></small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <!-- <a href="/pages/dailies">Dailies</a> -->
+    <!-- &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br> -->
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>        </nav>
+
+        <div class="content pure-u-1 pure-u-md-4-5">
+            <article>
+<section id="content" class="body">
+    <div class="marginnote">
+        <hr>
+        <div class="article-information">
+            <div class="article-information-heading uppercase">Published</div>
+            <time class="published" datetime="2024-08-24T00:00:00-06:00">
+                Sat 24 August 2024
+            </time>
+            <div class="category">
+                Category: <a href="/categories#osm-ref">osm</a>
+            </div>
+            <div class="tags">
+                Tags:
+                <a href="/tags#osm-ref">osm</a>
+                <a href="/tags#overpass-turbo-ref">overpass-turbo</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <header>
+        <h1 class="entry-title">
+            <a href="/overpass-sidewalks.html" rel="bookmark"
+                title="Permalink to Overpass Queries for sidewalks">Overpass Queries for sidewalks</a>
+        </h1>
+    </header>
+    <article class="article-content">
+        <div class="highlight"><pre><span></span><code><span class="p">[</span><span class="nx">out</span><span class="o">:</span><span class="nx">json</span><span class="p">][</span><span class="nx">timeout</span><span class="o">:</span><span class="mf">120</span><span class="p">];</span>
+<span class="p">(</span>
+<span class="w">    </span><span class="nx">nwr</span><span class="p">[</span><span class="nx">footway</span><span class="o">=</span><span class="nx">sidewalk</span><span class="p">]({{</span><span class="nx">bbox</span><span class="p">}});</span>
+<span class="w">    </span><span class="nx">nwr</span><span class="p">[</span><span class="nx">highway</span><span class="p">][</span><span class="s2">&quot;sidewalk&quot;</span><span class="o">~</span><span class="s2">&quot;both|no|yes&quot;</span><span class="p">]({{</span><span class="nx">bbox</span><span class="p">}});</span>
+<span class="w">    </span><span class="nx">nwr</span><span class="p">[</span><span class="nx">highway</span><span class="p">][</span><span class="s2">&quot;sidewalk:right&quot;</span><span class="o">~</span><span class="s2">&quot;yes|no&quot;</span><span class="p">]({{</span><span class="nx">bbox</span><span class="p">}});</span>
+<span class="w">    </span><span class="nx">nwr</span><span class="p">[</span><span class="nx">highway</span><span class="p">][</span><span class="s2">&quot;sidewalk:left&quot;</span><span class="o">~</span><span class="s2">&quot;yes|no&quot;</span><span class="p">]({{</span><span class="nx">bbox</span><span class="p">}});</span>
+<span class="w">    </span><span class="nx">nwr</span><span class="p">[</span><span class="nx">highway</span><span class="p">][</span><span class="s2">&quot;sidewalk:both&quot;</span><span class="o">~</span><span class="s2">&quot;yes|no&quot;</span><span class="p">]({{</span><span class="nx">bbox</span><span class="p">}});</span>
+<span class="p">);</span>
+<span class="nx">out</span><span class="w"> </span><span class="nx">geom</span><span class="p">;</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="o">---</span>
+<span class="nx">style</span><span class="o">:</span>
+<span class="w">  </span><span class="k">extends</span><span class="o">:</span><span class="w"> </span><span class="nx">https</span><span class="o">:</span><span class="c1">//styles.trailsta.sh/protomaps-black.json</span>
+<span class="w">  </span><span class="nx">layers</span><span class="o">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">line</span>
+<span class="w">      </span><span class="nx">filter</span><span class="o">:</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">any</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="nx">all</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="p">[</span><span class="w"> </span><span class="ow">in</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;highway&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">primary</span><span class="p">,</span><span class="w"> </span><span class="nx">secondary</span><span class="p">,</span><span class="w"> </span><span class="nx">tertiary</span><span class="p">,</span><span class="w"> </span><span class="nx">residential</span><span class="p">,</span><span class="w"> </span><span class="nx">unclassified</span><span class="w"> </span><span class="p">],</span>
+<span class="w">            </span><span class="p">[</span><span class="s1">&#39;!has&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sidewalk&#39;</span><span class="p">],</span>
+<span class="w">            </span><span class="p">[</span><span class="s1">&#39;!has&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sidewalk:left&#39;</span><span class="p">],</span>
+<span class="w">            </span><span class="p">[</span><span class="s1">&#39;!has&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sidewalk:right&#39;</span><span class="p">],</span>
+<span class="w">            </span><span class="p">[</span><span class="s1">&#39;!has&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sidewalk:both&#39;</span><span class="p">]</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">      </span><span class="nx">paint</span><span class="o">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">paint</span>
+<span class="w">        </span><span class="nx">line</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span>
+<span class="w">        </span><span class="nx">line</span><span class="o">-</span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="nx">magenta</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">line</span>
+<span class="w">      </span><span class="nx">filter</span><span class="o">:</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">any</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">==</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="nx">get</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sidewalk:left&#39;</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nx">separate</span><span class="w"> </span><span class="p">]</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">==</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="nx">get</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sidewalk:right&#39;</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nx">separate</span><span class="w"> </span><span class="p">]</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">==</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="nx">get</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sidewalk:both&#39;</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nx">separate</span><span class="w"> </span><span class="p">]</span>
+<span class="w">      </span><span class="nx">paint</span><span class="o">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">paint</span>
+<span class="w">        </span><span class="nx">line</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span>
+<span class="w">        </span><span class="nx">line</span><span class="o">-</span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cyan&quot;</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">line</span>
+<span class="w">      </span><span class="nx">filter</span><span class="o">:</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">any</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">==</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">get</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sidewalk&#39;</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nx">separate</span><span class="w"> </span><span class="p">]</span>
+<span class="w">      </span><span class="nx">paint</span><span class="o">:</span>
+<span class="w">        </span><span class="o">&lt;&lt;:</span><span class="w"> </span><span class="o">*</span><span class="nx">paint</span>
+<span class="w">        </span><span class="nx">line</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span>
+<span class="w">        </span><span class="nx">line</span><span class="o">-</span><span class="nx">dasharray</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">line</span>
+<span class="w">      </span><span class="nx">filter</span><span class="o">:</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">any</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">==</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="nx">get</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sidewalk:left&#39;</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nx">yes</span><span class="w"> </span><span class="p">]</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">==</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="nx">get</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sidewalk:right&#39;</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nx">yes</span><span class="w"> </span><span class="p">]</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">==</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="nx">get</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sidewalk:both&#39;</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nx">yes</span><span class="w"> </span><span class="p">]</span>
+<span class="w">      </span><span class="nx">paint</span><span class="o">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">paint</span>
+<span class="w">        </span><span class="nx">line</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span>
+<span class="w">        </span><span class="nx">line</span><span class="o">-</span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;orange&quot;</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">line</span>
+<span class="w">      </span><span class="nx">filter</span><span class="o">:</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">any</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">==</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">get</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sidewalk&#39;</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nx">yes</span><span class="w"> </span><span class="p">]</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">==</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">get</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sidewalk&#39;</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nx">both</span><span class="w"> </span><span class="p">]</span>
+<span class="w">      </span><span class="nx">paint</span><span class="o">:</span>
+<span class="w">        </span><span class="o">&lt;&lt;:</span><span class="w"> </span><span class="o">*</span><span class="nx">paint</span>
+<span class="w">        </span><span class="nx">line</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span>
+<span class="w">        </span><span class="nx">line</span><span class="o">-</span><span class="nx">dasharray</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">line</span>
+<span class="w">      </span><span class="nx">filter</span><span class="o">:</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">any</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">==</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="nx">get</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sidewalk&#39;</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nx">no</span><span class="w"> </span><span class="p">]</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">==</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="nx">get</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sidewalk:left&#39;</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nx">no</span><span class="w"> </span><span class="p">]</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">==</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="nx">get</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sidewalk:right&#39;</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nx">no</span><span class="w"> </span><span class="p">]</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">==</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="nx">get</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sidewalk:both&#39;</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nx">no</span><span class="w"> </span><span class="p">]</span>
+<span class="w">      </span><span class="nx">paint</span><span class="o">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">paint</span>
+<span class="w">        </span><span class="nx">line</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span>
+<span class="w">        </span><span class="nx">line</span><span class="o">-</span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;red&quot;</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">line</span>
+<span class="w">      </span><span class="nx">filter</span><span class="o">:</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">any</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">==</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="nx">get</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sidewalk&#39;</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nx">no</span><span class="w"> </span><span class="p">]</span>
+<span class="w">      </span><span class="nx">paint</span><span class="o">:</span>
+<span class="w">        </span><span class="o">&lt;&lt;:</span><span class="w"> </span><span class="o">*</span><span class="nx">paint</span>
+<span class="w">        </span><span class="nx">line</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span>
+<span class="w">        </span><span class="nx">line</span><span class="o">-</span><span class="nx">dasharray</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">line</span>
+<span class="w">      </span><span class="nx">filter</span><span class="o">:</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">any</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">==</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="nx">get</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;footway&#39;</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nx">sidewalk</span><span class="w"> </span><span class="p">]</span>
+<span class="w">      </span><span class="nx">paint</span><span class="o">:</span>
+<span class="w">        </span><span class="nx">line</span><span class="o">-</span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span>
+<span class="w">        </span><span class="nx">line</span><span class="o">-</span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;green&quot;</span>
+<span class="o">---</span>
+<span class="p">[</span><span class="nx">bbox</span><span class="o">:</span><span class="p">{{</span><span class="nx">bbox</span><span class="p">}}];</span>
+<span class="p">(</span>
+<span class="w">  </span><span class="nx">way</span><span class="p">[</span><span class="o">~</span><span class="s2">&quot;sidewalk&quot;</span><span class="o">~</span><span class="s2">&quot;separate|yes|no&quot;</span><span class="p">];</span>
+<span class="w">  </span><span class="nx">way</span><span class="p">[</span><span class="s2">&quot;footway&quot;</span><span class="o">=</span><span class="s2">&quot;sidewalk&quot;</span><span class="p">];</span>
+<span class="w">  </span><span class="nx">way</span><span class="p">[</span><span class="s2">&quot;highway&quot;</span><span class="o">~</span><span class="s2">&quot;primary$|secondary$|tertiary$|unclassified|residential&quot;</span><span class="p">];</span>
+<span class="p">);</span>
+<span class="nx">out</span><span class="w"> </span><span class="nx">geom</span><span class="p">;</span>
+</code></pre></div>
+    </article>
+</section>
+                <hr>
+            </article>
+        </div>
+    </div> </body>
+
+</html>

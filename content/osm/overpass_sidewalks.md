@@ -53,7 +53,7 @@ style:
       paint:
         <<: *paint
         line-width: 3
-        line-dasharray: [1, 1]
+        line-dasharray: [2, 3]
     - type: line
       filter:
         - any
@@ -71,7 +71,7 @@ style:
       paint:
         <<: *paint
         line-width: 3
-        line-dasharray: [1, 1]
+        line-dasharray: [2, 3]
     - type: line
       filter:
         - any
@@ -89,7 +89,7 @@ style:
       paint:
         <<: *paint
         line-width: 3
-        line-dasharray: [1, 1]
+        line-dasharray: [2, 3]
     - type: line
       filter:
         - any

@@ -8,7 +8,6 @@ Summary: A collection of overpass turbo queries for reviewing roads in Utah
 ---
 
 ```js
-
 [out:json][timeout:25];
 // [x] Salt Lake City
 // [x] Magna Township
@@ -19,18 +18,21 @@ Summary: A collection of overpass turbo queries for reviewing roads in Utah
 // [x] Murray
 // [x] Taylorsville
 // [x] Kearns
-// [ ] West Jordan
-//area[wikidata=Q52466]->.a;
-// [ ] Midvale
-//area[wikidata=Q482518]->.a;
+// [x] West Jordan
+// [x] Midvale
 // [ ] Cottonwood Heights
-//area[wikidata=Q482523]->.a;
-// [ ] Sandy ( + White City, Granite)
+area[wikidata=Q482523]->.a;
+// [ ] Sandy ( + White City, Granite) 
 // [ ] South Jordan
 // [ ] Herriman
 // [ ] Riverton
 // [ ] Draper
 // [ ] Bluffdale
+
+// [ ] Copperton
+// [ ] Emigration Canyon 
+// [ ] Cottonwood Canyons 
+// [ ] GSL Marshes 
 
 //-------------------------
 // Salt Lake County

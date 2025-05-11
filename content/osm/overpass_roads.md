@@ -7,6 +7,8 @@ slug: overpass-utah-roads
 Summary: A collection of overpass turbo queries for reviewing roads in Utah
 ---
 
+### Improperly Named Roads
+
 ```js
 [out:json][timeout:25];
 // [ ] Salt Lake City 
@@ -59,6 +61,61 @@ way[highway=primary]["name_1"](area.a);
 
 out geom;
 ```
+
+### Very Detailed Roads
+
+```js
+---
+style:
+  extends: https://styles.trailsta.sh/protomaps-black.json
+  layers:
+    - type: line
+      filter:
+        - any
+        - ['has', 'highway']
+      paint:
+        line-width: 1
+        line-color: green
+    - type: line
+      filter:
+        - any
+        - [ all,
+            ['!has', 'sidewalk'],
+            ['!has', 'sidewalk:left'],
+            ['!has', 'sidewalk:right'],
+            ['!has', 'sidewalk:both'],
+          ]
+      paint: &paint
+        line-width: 2
+        line-color: magenta
+    - type: line
+      filter:
+        - any
+        - ['!has', 'lanes']
+      paint:
+        line-width: 2
+        line-color:  "red"
+    - type: line
+      filter:
+        - any
+        - ['!has', 'surface']
+      paint:
+        line-width: 2
+        line-color: "#f1c40f"
+    - type: line
+      filter:
+        - any
+        - ['!has', 'maxspeed']
+      paint:
+        line-width: 2
+        line-color: "#ec7063"
+---
+[out:json][timeout:25];
+way["highway"~"primary$|secondary$|tertiary$|unclassified|residential"]({{bbox}});
+out geom;
+```
+
+### Unreviewed Roads (finished)
 
 ```js
 [out:json][timeout:25];

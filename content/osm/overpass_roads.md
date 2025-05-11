@@ -9,52 +9,67 @@ Summary: A collection of overpass turbo queries for reviewing roads in Utah
 
 ```js
 [out:json][timeout:25];
-// [x] Salt Lake City
-// [x] Magna Township
-// [x] West Valley
-// [x] South Salt Lake
-// [x] Millcreek
-// [x] Holladay
-// [x] Murray
-// [x] Taylorsville
-// [x] Kearns
-// [x] West Jordan
-// [x] Midvale
+// [ ] Salt Lake City 
+// [ ] Magna Township    
+// [ ] West Valley
+// [ ] South Salt Lake
+// [ ] Millcreek
+// [ ] Holladay 
+// [ ] Murray 
+// [ ] Taylorsville 
+// [ ] Kearns
+// [ ] West Jordan
+// [ ] Midvale
 // [ ] Cottonwood Heights
-area[wikidata=Q482523]->.a;
-// [ ] Sandy ( + White City, Granite) 
-// [ ] South Jordan
-// [ ] Herriman
+// [ ] Sandy ( + White City, Granite)
+// [ ] Herriman 
+// [ ] South Jordan 
 // [ ] Riverton
-// [ ] Draper
-// [ ] Bluffdale
+// [ ] Draper    
+// [ ] Bluffdale  
 
-// [ ] Copperton
-// [ ] Emigration Canyon 
-// [ ] Cottonwood Canyons 
-// [ ] GSL Marshes 
+// [ ] Copperton 
+// [ ] Emigration Canyon  
+// [ ] Cottonwood Canyons  
+// [ ] GSL Marshes  
+ 
+//-------------------------
+// Salt Lake County
+area[wikidata=Q484556]->.a; 
+// Garfield County, Utah
+//area[wikidata=Q26740]->.a;
+// Sanpete County 
+//area[wikidata=Q484577]->.a;
+// Juab County
+//area[wikidata=Q26689]->.a; 
+
+
+// Badly named roads
+(
+way[highway=primary]["name:prefix"!~"North|South|East|West"](area.a);
+way[highway=primary][!"name:full"](area.a);
+way[highway=primary]["name_1"](area.a);
+
+//way["highway"~"primary$|secondary$|tertiary$|unclassified|residential"]["name:prefix"!~"North|South|East|West"](area.a);
+//way["highway"~"primary$|secondary$|tertiary$|unclassified|residential"][!"name:full"](area.a);
+
+//way["highway"~"primary$|secondary$|tertiary$|unclassified|residential|service"]["tiger:cfcc"](area.a);
+); 
+ 
+
+out geom;
+```
+
+```js
+[out:json][timeout:25];
 
 //-------------------------
 // Salt Lake County
-//area[wikidata=Q484556]->.a;
-// Garfield County, Utah
-//area[wikidata=Q26740]->.a;
-// Sanpete County
-//area[wikidata=Q484577]->.a;
-// Juab County
-//area[wikidata=Q26689]->.a;
-
-// Badly named roads
-//(
-//way["highway"~"primary$|secondary$|tertiary$|unclassified|residential"]["name:prefix"!~"North|South|East|West"](area.a);
-//way["highway"~"primary$|secondary$|tertiary$|unclassified|residential|service"]["tiger:cfcc"](area.a);
-//way["highway"~"primary$|secondary$|tertiary$|unclassified|residential|service"]["tiger:reviewed"="no"](area.a);
-//);
+area[wikidata=Q484556]->.a;
 
 // Unreviewed roads
 (
 way[highway]["tiger:reviewed"="no"](area.a);
-//way[highway]["tiger:cfcc"](area.a);
 );
 
 out geom;

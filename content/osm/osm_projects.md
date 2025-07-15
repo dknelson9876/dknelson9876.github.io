@@ -1,7 +1,7 @@
 ---
 Title: OpenStreetMap Projects
 Date: 2024-02-19
-Modified: 2024-03-25
+Modified: 2025-05-06
 tags: osm, projects
 slug: osm-projects
 Summary: A list of the projects I've dipped my toes into in OpenStreetMap
@@ -19,3 +19,13 @@ Summary: A list of the projects I've dipped my toes into in OpenStreetMap
     - Probably will be a lot easier with the conflation JOSM plugin, now that I know how to use it
 - New Zealand LINZ Building Import
     - Performed in JOSM using the MapWithAI plugin
+
+## Local Businesses that aren't large enough to qualify for NSI, but still have a significant presence
+
+- Shops
+    - Dollar Tree (last updated: never)
+    - Game Haven
+- Banks
+    - Canyon View CU
+    - Cyprus CU
+

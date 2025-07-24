@@ -76,18 +76,7 @@ style:
       paint:
         line-width: 1
         line-color: green
-    - type: line
-      filter:
-        - any
-        - [ all,
-            ['!has', 'sidewalk'],
-            ['!has', 'sidewalk:left'],
-            ['!has', 'sidewalk:right'],
-            ['!has', 'sidewalk:both'],
-          ]
-      paint: &paint
-        line-width: 2
-        line-color: magenta
+
     - type: line
       filter:
         - any
@@ -101,17 +90,39 @@ style:
         - ['!has', 'surface']
       paint:
         line-width: 2
-        line-color: "#f1c40f"
+        line-color: "sandybrown"
     - type: line
       filter:
         - any
         - ['!has', 'maxspeed']
       paint:
         line-width: 2
-        line-color: "#ec7063"
+        line-color: "indianred"
+    - type: line
+      filter:
+        - any
+        - ['!has', 'name:prefix']
+        - ['!has', 'name:full']
+      paint:
+        line-width: 2
+        line-color: "teal"
+    - type: circle
+      filter:
+        - any
+        - ['==', 'highway', 'give_way']
+        - ['==', 'highway', 'stop']
+        - ['==', 'highway', 'traffic_signals']
+      paint:
+        circle-radius: 3
+        circle-color: green
 ---
 [out:json][timeout:25];
+(
 way["highway"~"primary$|secondary$|tertiary$|unclassified|residential"]({{bbox}});
+node["highway"="give_way"]({{bbox}});
+node["highway"="stop"]({{bbox}});
+node["highway"="traffic_signals"]({{bbox}}); 
+);
 out geom;
 ```
 

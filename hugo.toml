@@ -1,0 +1,21 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'My Site now!'
+theme = 're-terminal'
+
+[params]
+  contentTypeName = "posts"
+  # orange, blue, red, green, pink, or paper
+  themeColor = "blue"
+  showMenuItems = 2
+  fullWidthTheme = false
+  centerTheme = true
+  showLastUpdated = true
+  # favicon = "favicon.ico"
+
+[languages]
+  [languages.en.params]
+    title = "dknelson.dev"
+    [languages.en.params.logo]
+      logoText = "dknelson.dev"
+      logoHomeLink = "/"

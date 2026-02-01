@@ -1,6 +1,6 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://dknelson.dev'
 languageCode = 'en-us'
-title = 'My Site now!'
+title = 'dknelson.dev'
 theme = 're-terminal'
 
 [params]
@@ -19,3 +19,7 @@ theme = 're-terminal'
     [languages.en.params.logo]
       logoText = "dknelson.dev"
       logoHomeLink = "/"
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'

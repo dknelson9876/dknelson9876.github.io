@@ -9,6 +9,45 @@ slug: overpass-utah-roads
 Summary: A collection of overpass turbo queries for reviewing roads in Utah
 ---
 
+### Improperly Named Roads, But Smarter
+
+```js
+---
+style:
+  extends: https://styles.trailsta.sh/protomaps-black.json
+  layers:
+    - type: line
+      filter:
+        - all
+        - ["has", "highway"]
+        - ["!has", "noname"]
+        - ["!has", "noprefix"]
+        - ["!has", "junction"]
+      paint:
+        line-width: 2
+        line-color: "indianred"
+---
+[out:json][timeout:25];
+
+// get all roads of relevant hierarchy
+way["highway"~"primary$|secondary$|tertiary$|unclassified|residential"]({{bbox}})->.roads;
+
+way.roads["name:prefix"!~"North|South|East|West"]->.no_prefix;
+way.roads[!"name:full"]->.no_full;
+
+// filter to roads which are 1. bad prefix, 2. missing name:full, or 3. still have tiger tag
+(
+  way.no_prefix["name:left:prefix"!~"North|South|East|West"];
+  way.no_prefix["name:right:prefix"!~"North|South|East|West"];
+  way.no_full[!"name:left:full"];
+  way.no_full[!"name:right:full"];
+  way.roads["tiger:cfcc"];
+);
+
+
+out geom;
+```
+
 ### Improperly Named Roads
 
 ```js
